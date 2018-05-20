@@ -23,9 +23,9 @@ public class BookAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Book book = (Book) getItem(position); // 获取当前项的Book实例
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);//实例化一个对象
-        TextView bookName = (TextView) view.findViewById(R.id.book_name);//获取该布局内的图片视图
+        TextView bookName = (TextView) view.findViewById(R.id.book_name);//获取该布局内的视图
 
-        bookName.setText(book.getName());//为图片视图设置图片资源
+        bookName.setText(book.getName());//为视图设置资源
         return view;
     }
 }

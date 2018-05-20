@@ -1,12 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="The Info Tab!"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F0F3F6"
+    >
+
+
+    <LinearLayout style="@style/wrap_layout" >
+        <!-- 上圆角-->
+        <LinearLayout style="@style/top_layout">
+            <TextView style="@style/usertext" android:text="个性签名" />
+            <ImageButton
+                android:id="@+id/mysignature"
+                style="@style/img_arrow"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <!-- 分割线 -->
+        <View style="@style/bg_line"/>
+        <!-- 无圆角-->
+        <LinearLayout style="@style/mid_layout">
+            <TextView style="@style/usertext" android:text="我的资料" />
+            <ImageButton
+                android:id="@+id/mydata"
+                style="@style/img_arrow"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+        <View style="@style/bg_line"/>
+        <LinearLayout style="@style/mid_layout">
+            <TextView style="@style/usertext" android:text="我的转让" />
+            <ImageButton
+                android:id="@+id/mytransfer"
+                style="@style/img_arrow"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+        <View style="@style/bg_line"/>
+        <LinearLayout style="@style/mid_layout">
+            <TextView style="@style/usertext" android:text="我的阅览" />
+            <ImageButton
+                android:id="@+id/myreading"
+                style="@style/img_arrow"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+        <View style="@style/bg_line"/>
+        <!-- 下圆角-->
+        <LinearLayout style="@style/bottom_layout">
+            <TextView style="@style/usertext" android:text="消息通知" />
+            <ImageButton
+                android:id="@+id/mymessage"
+                style="@style/img_arrow"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!-- 全圆角-->
+    <LinearLayout style="@style/wrap_layout">
+        <LinearLayout style="@style/single_layout">
+            <TextView style="@style/usertext" android:text="辅助功能"/>
+            <ImageButton
+                android:id="@+id/myassist"
+                style="@style/img_arrow"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

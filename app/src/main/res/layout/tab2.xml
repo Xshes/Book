@@ -3,10 +3,73 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="30sp"
-        android:text="The Search Tab!"/>
+
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="320dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+
+        android:paddingLeft="20dp"
+
+        />
+
+    <RadioGroup
+        android:id="@+id/srg1"
+        android:layout_width="320dp"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <RadioButton
+            android:id="@+id/srb1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="教材"
+            android:layout_gravity="bottom" />
+
+        <RadioButton
+            android:id="@+id/srb2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="名著"
+            android:layout_gravity="bottom"/>
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/srg2"
+        android:layout_width="320dp"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <RadioButton
+            android:id="@+id/srb3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="笔记"
+            android:layout_gravity="top"/>
+
+        <RadioButton
+            android:id="@+id/srb4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="漫画"
+            android:layout_gravity="top"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:text="寻找" />
+
 </LinearLayout>
