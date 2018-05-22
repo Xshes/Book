@@ -20,15 +20,5 @@
             android:text="作者：X"
             android:layout_marginLeft="10dip" />
     </LinearLayout>
-    <Button
-        android:alpha="0"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0" />
-    <Button
-            android:id="@+id/book_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="详情"/>
+
 </LinearLayout>

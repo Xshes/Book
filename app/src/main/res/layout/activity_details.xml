@@ -4,20 +4,15 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent">
 
-<View
-    android:background="#ff22"
-    android:id="@+id/top"
-    android:layout_width="match_parent"
-    android:layout_height="30dp"/>
 
-<com.example.views.pulltoloadmoreview.PullUpToLoadMore
+<com.example.book.PullUpToLoadMore
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/top"
+
     android:id="@+id/ptlm"
     android:orientation="vertical">
 
-    <com.example.views.pulltoloadmoreview.MyScrollView
+    <com.example.book.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -26,34 +21,49 @@ android:layout_height="match_parent">
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:text="这里是标题"
-                android:textSize="18dp" />
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp">
+                <ImageView
+                    android:id="@+id/book_bind"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:src="@drawable/timg"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:text="子标题"
-                android:textSize="18dp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="时间简史"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="作者："/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="上传者："/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="转让者："/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:text="图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥" />
+
+                </LinearLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,15 +77,15 @@ android:layout_height="match_parent">
                     android:height="50dp"
                     android:background="#b11"
                     android:gravity="center"
-                    android:text="继续拖动查看图文详情"
+                    android:text="继续拖动查看图书评论"
                     android:textColor="#000" />
 
             </LinearLayout>
         </LinearLayout>
 
-    </com.example.views.pulltoloadmoreview.MyScrollView>
+    </com.example.book.MyScrollView>
 
-    <com.example.views.pulltoloadmoreview.MyScrollView
+    <com.example.book.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -86,23 +96,15 @@ android:layout_height="match_parent">
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:text="图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥图文详情奥" />
-
 
 
 
 
         </LinearLayout>
 
-    </com.example.views.pulltoloadmoreview.MyScrollView>
+    </com.example.book.MyScrollView>
 
-</com.example.views.pulltoloadmoreview.PullUpToLoadMore>
+</com.example.book.PullUpToLoadMore>
 
 <Button
     android:text="回到顶部"
