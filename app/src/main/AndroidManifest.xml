@@ -23,6 +23,9 @@
         <activity android:name=".BaseActivity"></activity>
         <activity android:name=".BookActivity"></activity>
         <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".ReadBookActivity"/>
+        <activity android:name=".TransferBookActivity"/>
+
     </application>
 
 </manifest>

@@ -10,9 +10,11 @@
     <LinearLayout style="@style/wrap_layout" >
         <!-- 上圆角-->
         <LinearLayout style="@style/top_layout">
-            <TextView style="@style/usertext" android:text="个性签名" />
+            <TextView
+                android:id="@+id/nickname"
+                style="@style/usertext" android:text="昵称" />
             <ImageButton
-                android:id="@+id/mysignature"
+                android:id="@+id/myname"
                 style="@style/img_arrow"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
@@ -21,9 +23,13 @@
         <View style="@style/bg_line"/>
         <!-- 无圆角-->
         <LinearLayout style="@style/mid_layout">
-            <TextView style="@style/usertext" android:text="我的资料" />
+            <TextView style="@style/usertext" android:text="我的签名" />
+            <TextView
+                android:id="@+id/signaturetext"
+                style="@style/usertext"
+                android:text="这是我酷炫的个性签名"/>
             <ImageButton
-                android:id="@+id/mydata"
+                android:id="@+id/mysignature"
                 style="@style/img_arrow"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
