@@ -1,12 +1,17 @@
 package com.example.book;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -82,6 +87,24 @@ public class BaseActivity extends FragmentActivity {
 	/**
 	 * 拍照或从图库选择图片(PopupWindow形式)
 	 */
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		switch (requestCode) {
+			//就像onActivityResult一样这个地方就是判断你是从哪来的。
+			case 222:
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					// Permission Granted
+					takePhoto();
+				} else {
+					// Permission Denied
+					Toast.makeText(BaseActivity.this, "很遗憾你把相机权限禁用了。请务必开启相机权限享受我们提供的服务吧。", Toast.LENGTH_SHORT)
+							.show();
+				}
+				break;
+			default:
+				super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		}
+	}
 	public void showPicturePopupWindow(){
 		menuWindow = new SelectPicPopupWindow(this, new OnClickListener() {
 			
@@ -91,7 +114,20 @@ public class BaseActivity extends FragmentActivity {
 				menuWindow.dismiss();
 				switch (v.getId()) {
 				case R.id.takePhotoBtn:// 拍照
-					takePhoto();
+					if (Build.VERSION.SDK_INT >= 23) {
+						int checkCallPhonePermission = ContextCompat.checkSelfPermission(BaseActivity.this, Manifest.permission.CAMERA);
+						if(checkCallPhonePermission != PackageManager.PERMISSION_GRANTED){
+							ActivityCompat.requestPermissions(BaseActivity.this,new String[]{Manifest.permission.CAMERA},222);
+							return;
+						}else{
+
+							takePhoto();//调用具体方法
+						}
+					} else {
+
+						takePhoto();//调用具体方法
+					}
+
 					break;
 				case R.id.pickPhotoBtn:// 相册选择图片
 					pickPhoto();
@@ -111,6 +147,7 @@ public class BaseActivity extends FragmentActivity {
 	 */
 	private void takePhoto() {
 		// 执行拍照前，应该先判断SD卡是否存在
+
 		String SDState = Environment.getExternalStorageState();
 		if (SDState.equals(Environment.MEDIA_MOUNTED)) {
 			/**

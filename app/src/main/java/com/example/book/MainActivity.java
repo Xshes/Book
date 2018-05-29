@@ -22,13 +22,15 @@ public class MainActivity extends Activity {
     private CheckBox rememberpassword_login;
     private CheckBox auto_login;
     private Button button_login;
-    private SharedPreferences sp;
+    private Button button_reg;
+    protected static SharedPreferences sp;
     private String idvalue;
     private String passwordvalue;
     private static final int PASSWORD_MIWEN = 0x81;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         //找到相应的布局及控件
@@ -39,6 +41,7 @@ public class MainActivity extends Activity {
         rememberpassword_login=(CheckBox) findViewById(R.id.login_rememberpassword);
         auto_login=(CheckBox) findViewById(R.id.login_autologin);
         button_login=(Button) findViewById(R.id.login_button);
+        button_reg=(Button)findViewById(R.id.reg_button);
 
         if (sp.getBoolean("ischeck",false)){
             rememberpassword_login.setChecked(true);
@@ -52,6 +55,15 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         }
+
+        button_reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,RegActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override

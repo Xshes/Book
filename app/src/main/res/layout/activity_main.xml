@@ -65,4 +65,15 @@
         android:text="登录"
         android:textSize="20dp"
         android:textColor="@color/colorAccent"/>
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/reg_button"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape"
+        android:text="注册"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"/>
 </LinearLayout>

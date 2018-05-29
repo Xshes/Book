@@ -3,6 +3,7 @@ package com.example.book;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
@@ -29,6 +30,8 @@ public class InfoFragment extends Fragment{
     private TextView nowname;
     private ImageButton transfer;
     private ImageButton read;
+    private ImageButton sysmessage;
+    private ImageButton exit;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +48,26 @@ public class InfoFragment extends Fragment{
         name=(ImageButton) getActivity().findViewById(R.id.myname);
         transfer=(ImageButton) getActivity().findViewById(R.id.mytransfer);
         read=(ImageButton) getActivity().findViewById(R.id.myreading);
+        sysmessage=(ImageButton)getActivity().findViewById(R.id.sys_message);
+        exit=(ImageButton) getActivity().findViewById(R.id.myexit);
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                SharedPreferences.Editor editor = MainActivity.sp.edit();
+                editor.clear();
+                editor.commit();
+                startActivity(intent);
+            }
+        });
+        sysmessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),SystemMessageActivity.class);
+                startActivity(intent);
+            }
+        });
         transfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

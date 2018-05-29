@@ -54,7 +54,7 @@
         <LinearLayout style="@style/bottom_layout">
             <TextView style="@style/usertext" android:text="消息通知" />
             <ImageButton
-                android:id="@+id/mymessage"
+                android:id="@+id/sys_message"
                 style="@style/img_arrow"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
@@ -65,9 +65,9 @@
     <!-- 全圆角-->
     <LinearLayout style="@style/wrap_layout">
         <LinearLayout style="@style/single_layout">
-            <TextView style="@style/usertext" android:text="辅助功能"/>
+            <TextView style="@style/usertext" android:text="注销"/>
             <ImageButton
-                android:id="@+id/myassist"
+                android:id="@+id/myexit"
                 style="@style/img_arrow"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
