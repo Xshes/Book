@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    tools:context="com.example.book.MainActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/login_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/info"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="48dp"/>
+
+    <EditText
+        android:id="@+id/reg_id"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="48dp"
+        android:paddingLeft="8dp"
+        android:hint="请输入账号"
+        android:background="@color/colorAccent"
+        />
+    <EditText
+        android:id="@+id/reg_name"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="8dp"
+        android:hint="请输入用户名"
+        android:background="@color/colorAccent"
+        />
+    <EditText
+        android:id="@+id/reg_password"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="8dp"
+        android:hint="请输入密码"
+        android:background="@color/colorAccent"
+        />
+
+
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/suj_button"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape"
+        android:text="提交"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"/>
+
+
+</LinearLayout>
