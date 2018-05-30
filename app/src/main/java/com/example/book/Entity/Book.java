@@ -1,4 +1,4 @@
-package com.example.book;
+package com.example.book.Entity;
 
 public class Book {
     private String name;

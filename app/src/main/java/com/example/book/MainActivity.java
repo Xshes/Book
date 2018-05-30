@@ -2,6 +2,7 @@ package com.example.book;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.os.Handler;
+import android.os.Message;
+import com.example.book.Entity.SimResult;
+import com.google.gson.*;
+
+import java.util.List;
 
 public class MainActivity extends Activity {
 
@@ -27,6 +34,24 @@ public class MainActivity extends Activity {
     private String idvalue;
     private String passwordvalue;
     private static final int PASSWORD_MIWEN = 0x81;
+
+    Gson gson = new Gson();
+    String userLogin="用户登录";
+    String adminLogin="管理员登陆";
+    String isBan="登陆失败，用户已被封禁";
+    String json;
+
+    private Handler handler  = new Handler(){
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 0x001:
+                    SwitchAct();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,21 +97,7 @@ public class MainActivity extends Activity {
                 idvalue=id_login.getText().toString();
                 password_login.getPaint().setFlags(0);
                 passwordvalue=password_login.getText().toString();
-
-
-                if (idvalue.equals("123")&&passwordvalue.equals("123")){
-                    if (rememberpassword_login.isChecked()){
-                        SharedPreferences.Editor editor=sp.edit();
-                        editor.putString("PHONEEDIT",idvalue);
-                        editor.putString("PASSWORD",passwordvalue);
-                        editor.commit();
-                    }
-                    Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                    startActivity(intent);
-                    finish();
-                }else{
-                    Toast.makeText(MainActivity.this, "手机号码或密码错误，请重新登录", Toast.LENGTH_SHORT).show();
-                }
+                Login();
             }
         });
 
@@ -117,5 +128,49 @@ public class MainActivity extends Activity {
             }
         });
     }
+
+    public void Login(){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"User/Login?account="+idvalue+"&password="+passwordvalue;
+                    json =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x001);
+            };
+
+        }.start();
+    }
+
+    public void SwitchAct(){
+        SimResult result = gson.fromJson(json,SimResult.class);
+        String res=result.result;
+        if (res.equals(userLogin)){
+            if (rememberpassword_login.isChecked()){
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putString("PHONEEDIT",idvalue);
+                editor.putString("PASSWORD",passwordvalue);
+                editor.commit();
+            }Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+            startActivity(intent);
+
+            finish();
+        }else if(res.equals(adminLogin))
+        {
+            // TODO: 2018/5/30 换成管理员界面跳转
+            Toast.makeText(MainActivity.this, "管理员登陆", Toast.LENGTH_SHORT).show();
+        }
+        else if(res.equals(isBan))
+        {
+            Toast.makeText(MainActivity.this, isBan, Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(MainActivity.this, "用户名或密码错误，请重新登录", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }
