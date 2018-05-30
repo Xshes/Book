@@ -1,9 +1,12 @@
 package com.example.book;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -57,6 +60,29 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
                 "listview的内部的评论按钮被点击了！，位置是-->" + (Integer) v.getTag()
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
+        dialogEditComment();
+    }
+
+    private void dialogEditComment() {
+        final EditText editText = new EditText(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this,3);
+        builder.setTitle("评论内容");
+        editText.setHeight(240);
+        builder.setView(editText);
+        builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(BookCommentActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
     }
 
     @Override
