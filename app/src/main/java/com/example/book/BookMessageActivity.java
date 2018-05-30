@@ -122,7 +122,7 @@ public class BookMessageActivity extends Activity implements AdapterView.OnItemC
     }
 
         @Override
-        public void shareClick(View v) {
+        public void reportClick(View v) {
             Toast.makeText(
                     BookMessageActivity.this,
                     "listview的内部的分享按钮被点击了！，位置是-->" + (Integer) v.getTag()

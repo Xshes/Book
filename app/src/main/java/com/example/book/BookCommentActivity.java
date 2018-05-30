@@ -85,12 +85,35 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         builder.create().show();
     }
 
+    private void dialogEditReport() {
+        final EditText editText = new EditText(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this,3);
+        builder.setTitle("举报详情");
+        editText.setHeight(240);
+        builder.setView(editText);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(BookCommentActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
+    }
+
     @Override
-    public void shareClick(View v) {
+    public void reportClick(View v) {
         Toast.makeText(
                 BookCommentActivity.this,
-                "listview的内部的分享按钮被点击了！，位置是-->" + (Integer) v.getTag()
+                "listview的内部的举报按钮被点击了！，位置是-->" + (Integer) v.getTag()
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
+        dialogEditReport();
     }
 }
