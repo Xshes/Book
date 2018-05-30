@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.book.Book;
+import com.example.book.Entity.Book;
 import com.example.book.R;
 
 import java.util.List;
