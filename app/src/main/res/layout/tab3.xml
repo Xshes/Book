@@ -49,6 +49,15 @@
                 style="@style/img_arrow"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
+
+        <View style="@style/bg_line"/>
+        <LinearLayout style="@style/mid_layout">
+            <TextView style="@style/usertext" android:text="借阅通知" />
+            <ImageButton
+                android:id="@+id/mybookmessage"
+                style="@style/img_arrow"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
         <View style="@style/bg_line"/>
         <!-- 下圆角-->
         <LinearLayout style="@style/bottom_layout">

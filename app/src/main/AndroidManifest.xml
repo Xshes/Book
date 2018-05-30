@@ -26,7 +26,8 @@
         <activity android:name=".TransferBookActivity"/>
         <activity android:name=".SystemMessageActivity"/>
         <activity android:name=".RegActivity"/>
-
+        <activity android:name=".BookMessageActivity"/>
+        <activity android:name=".BookCommentActivity"/>
     </application>
 
 </manifest>

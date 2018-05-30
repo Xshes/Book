@@ -31,6 +31,7 @@ public class InfoFragment extends Fragment{
     private ImageButton transfer;
     private ImageButton read;
     private ImageButton sysmessage;
+    private ImageButton bookmessage;
     private ImageButton exit;
     @Nullable
     @Override
@@ -49,7 +50,16 @@ public class InfoFragment extends Fragment{
         transfer=(ImageButton) getActivity().findViewById(R.id.mytransfer);
         read=(ImageButton) getActivity().findViewById(R.id.myreading);
         sysmessage=(ImageButton)getActivity().findViewById(R.id.sys_message);
+        bookmessage=(ImageButton)getActivity().findViewById(R.id.mybookmessage);
         exit=(ImageButton) getActivity().findViewById(R.id.myexit);
+
+        bookmessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),BookMessageActivity.class);
+                startActivity(intent);
+            }
+        });
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +88,7 @@ public class InfoFragment extends Fragment{
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),ReadBookActivity.class);
+                Intent intent=new Intent(getActivity(),BookCommentActivity.class);
                 startActivity(intent);
             }
         });
