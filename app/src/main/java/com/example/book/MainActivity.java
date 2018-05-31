@@ -160,7 +160,8 @@ public class MainActivity extends Activity {
             finish();
         }else if(res.equals(adminLogin))
         {
-            // TODO: 2018/5/30 换成管理员界面跳转
+            Intent intent = new Intent(MainActivity.this,AdminActivity.class);
+            startActivity(intent);
             Toast.makeText(MainActivity.this, "管理员登陆", Toast.LENGTH_SHORT).show();
         }
         else if(res.equals(isBan))
