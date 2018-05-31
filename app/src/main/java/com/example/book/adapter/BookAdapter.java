@@ -15,6 +15,7 @@ import java.util.List;
 public class BookAdapter extends ArrayAdapter {
     private final int resourceId;
 
+    // TODO: 2018/5/31 需要重构 
     public BookAdapter(Context context, int textViewResourceId, List<Book> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
