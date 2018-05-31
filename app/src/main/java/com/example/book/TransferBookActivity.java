@@ -36,12 +36,6 @@ public class TransferBookActivity extends Activity{
 
     }
     private void initBooks() {
-        Book apple = new Book("Apple");
-        bookList.add(apple);
-        Book banana = new Book("Banana");
-        bookList.add(banana);
-        Book orange = new Book("Orange");
-        bookList.add(orange);
 
     }
 }

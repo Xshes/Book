@@ -1,17 +1,11 @@
 package com.example.book.Entity;
 
 public class Book {
-    private String name;
-
-
-    public Book(String name) {
-        this.name = name;
-
-    }
-
-    public String getName() {
-        return name;
-    }
+     public String BookTag;
+     public String BookAuthor;
+     public byte[] BookCover;
+     public String BookName;
+     public String BookNumber;
 
 
 }
