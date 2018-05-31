@@ -57,6 +57,7 @@ public class BookCommentAdapter extends BaseAdapter implements View.OnClickListe
                     .findViewById(R.id.bk_name);
             holder.button1 = (Button) convertView.findViewById(R.id.comment);
             holder.button2 = (Button) convertView.findViewById(R.id.report);
+            holder.button3=(Button)convertView.findViewById(R.id.retransfer);
 
             convertView.setTag(holder);
         } else {
@@ -65,10 +66,12 @@ public class BookCommentAdapter extends BaseAdapter implements View.OnClickListe
         holder.textView.setText(mContentList.get(position));
         holder.button1.setOnClickListener(this);
 		holder.button2.setOnClickListener(this);
+		holder.button3.setOnClickListener(this);
 
         // 设置位置，获取点击的条目按钮
         holder.button1.setTag(position);
 		holder.button2.setTag(position);
+		holder.button3.setTag(position);
         return convertView;
     }
 
@@ -76,6 +79,7 @@ public class BookCommentAdapter extends BaseAdapter implements View.OnClickListe
         public TextView textView;
         public Button button1;
         public Button button2;
+        public Button button3;
 
     }
 
@@ -89,6 +93,9 @@ public class BookCommentAdapter extends BaseAdapter implements View.OnClickListe
 		    case R.id.report:
 			mCallback.reportClick(v);
 			break;
+            case R.id.retransfer:
+               mCallback.retransferClick(v);
+               break;
             default:
                 break;
         }

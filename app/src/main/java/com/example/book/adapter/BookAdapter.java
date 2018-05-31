@@ -1,33 +1,96 @@
 package com.example.book.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.book.Entity.Book;
 import com.example.book.R;
+import com.example.book.adapter.inter.InterClick;
 
 import java.util.List;
 
-public class BookAdapter extends ArrayAdapter {
-    private final int resourceId;
+public class BookAdapter extends BaseAdapter {
+    private static final String TAG = "ContentAdapter";
+    private List<String> mContentList;
+    private LayoutInflater mInflater;
+    private InterClick mCallback;
 
-    // TODO: 2018/5/31 需要重构
-    public BookAdapter(Context context, int textViewResourceId, List<Book> objects) {
-        super(context, textViewResourceId, objects);
-        resourceId = textViewResourceId;
+    public BookAdapter(Context context, List<String> contentList,
+                               InterClick callback) {
+        mContentList = contentList;
+        mInflater = LayoutInflater.from(context);
+        mCallback = callback;
     }
+
+    @Override
+    public int getCount() {
+        Log.i(TAG, "getCount");
+        return mContentList.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        Log.i(TAG, "getItem");
+        return mContentList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        Log.i(TAG, "getItemId");
+        return position;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Book book = (Book) getItem(position); // 获取当前项的Book实例
-        View view = LayoutInflater.from(getContext()).inflate(resourceId, null);//实例化一个对象
-        TextView bookName = (TextView) view.findViewById(R.id.book_name);//获取该布局内的视图
-        TextView BookAuthor = (TextView) view.findViewById(R.id.book_author);//获取该布局内的视图
-        bookName.setText(book.BookName);//为视图设置资源
-        BookAuthor.setText(book.BookAuthor);
-        return view;
+        Log.i(TAG, "getView");
+        BookAdapter.ViewHolder holder = null;
+        if (convertView == null) {
+            convertView = mInflater.inflate(R.layout.book_item, null);
+            holder = new BookAdapter.ViewHolder();
+            holder.textView = (TextView) convertView
+                    .findViewById(R.id.book_name);
+//            holder.button1 = (Button) convertView.findViewById(R.id.report_detail);
+//            holder.button2 = (Button) convertView.findViewById(R.id.ban);
+
+            convertView.setTag(holder);
+        } else {
+            holder = (BookAdapter.ViewHolder) convertView.getTag();
+        }
+        holder.textView.setText(mContentList.get(position));
+//        holder.button1.setOnClickListener(this);
+////        holder.button2.setOnClickListener(this);
+
+        // 设置位置，获取点击的条目按钮
+//        holder.button1.setTag(position);
+//        holder.button2.setTag(position);
+        return convertView;
     }
+
+    public class ViewHolder {
+        public TextView textView;
+//        public Button button1;
+//        public Button button2;
+
+    }
+
+//     响应按钮点击事件,调用子定义接口，并传入View
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.report_detail:
+//                mCallback.commentClick(v);
+//                break;
+//            case R.id.ban:
+//                mCallback.reportClick(v);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }

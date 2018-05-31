@@ -7,4 +7,5 @@ public interface InterClick {
 
 	public void reportClick(View v);
 
+	public void retransferClick(View v);
 }

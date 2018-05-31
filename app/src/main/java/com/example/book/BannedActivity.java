@@ -118,4 +118,8 @@ public class BannedActivity extends Activity implements AdapterView.OnItemClickL
                 Toast.LENGTH_SHORT).show();
         dialogEditReport();
     }
+    @Override
+    public void retransferClick(View v){
+        Toast.makeText(this,  "发布成功！", Toast.LENGTH_LONG).show();
+    }
 }

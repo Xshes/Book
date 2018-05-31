@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,12 +24,24 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
     private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
     private List<String> contentList;
     private ListView mListView;
+    private Button logoutbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
+        logoutbtn=(Button)findViewById(R.id.logout);
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(AdminActivity.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                SharedPreferences.Editor editor = MainActivity.sp.edit();
+                editor.clear();
+                editor.commit();
+                startActivity(intent);
+            }
+        });
         init();
     }
 
@@ -117,5 +131,9 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
         dialogEditReport();
+    }
+    @Override
+    public void retransferClick(View v){
+        Toast.makeText(this,  "发布成功！", Toast.LENGTH_LONG).show();
     }
 }
