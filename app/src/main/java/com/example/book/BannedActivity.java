@@ -17,7 +17,7 @@ import com.example.book.adapter.inter.InterClick;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminActivity extends Activity implements AdapterView.OnItemClickListener,
+public class BannedActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
     private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
     private List<String> contentList;
@@ -74,7 +74,7 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
         builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(AdminActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+                Toast.makeText(BannedActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -96,7 +96,7 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(AdminActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+                Toast.makeText(BannedActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -112,7 +112,7 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
     @Override
     public void reportClick(View v) {
         Toast.makeText(
-                AdminActivity.this,
+                BannedActivity.this,
                 "listview的内部的举报按钮被点击了！，位置是-->" + (Integer) v.getTag()
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();

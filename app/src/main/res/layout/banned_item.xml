@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.book.SwipeListLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sll_banned"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal" >
+
+    </LinearLayout>
+
+    <RelativeLayout
+
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/touch_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <!--<Button-->
+            <!--android:id="@+id/unban"-->
+            <!--android:layout_width="85dp"-->
+            <!--android:layout_height="33dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginBottom="15dp"-->
+            <!--android:layout_marginEnd="120dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:background="@drawable/touch_bg"-->
+            <!--android:gravity="center"-->
+            <!--android:text="举报"-->
+            <!--android:textColor="@color/txt_color"/>-->
+
+        <Button
+            android:id="@+id/unban"
+            android:layout_width="85dp"
+            android:layout_height="33dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/touch_bg"
+            android:gravity="center"
+            android:text="解封"
+            android:textColor="@color/txt_color"/>
+
+        <TextView
+            android:id="@+id/unban_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="16dp"
+            android:text="Shooting Stars"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+
+
+
+    </RelativeLayout>
+
+</com.example.book.SwipeListLayout>

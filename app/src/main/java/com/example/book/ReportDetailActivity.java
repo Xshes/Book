@@ -3,7 +3,6 @@ package com.example.book;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,33 +10,33 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.book.adapter.AdminBanAdapter;
+import com.example.book.adapter.ReportDetailAdapter;
 import com.example.book.adapter.inter.InterClick;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminActivity extends Activity implements AdapterView.OnItemClickListener,
+public class ReportDetailActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
-    private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
+    private static final String[] CONTENTS = { "上传色情图书", "上传太色情的图书", "利用通知辱骂他人" };
     private List<String> contentList;
     private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_report_detail);
 
         init();
     }
 
     private void init() {
-        mListView = (ListView) findViewById(R.id.admin_listview);
+        mListView = (ListView) findViewById(R.id.report_listview);
         contentList = new ArrayList<String>();
         for (int i = 0; i < CONTENTS.length; i++) {
             contentList.add(CONTENTS[i]);
         }
-        mListView.setAdapter(new AdminBanAdapter(this, contentList, this));
+        mListView.setAdapter(new ReportDetailAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
     }
 
@@ -61,8 +60,7 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
                 "listview的内部的评论按钮被点击了！，位置是-->" + (Integer) v.getTag()
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this,ReportDetailActivity.class);
-        startActivity(intent);
+        dialogEditComment();
     }
 
     private void dialogEditComment() {
@@ -74,7 +72,7 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
         builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(AdminActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+                Toast.makeText(ReportDetailActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -96,7 +94,7 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(AdminActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+                Toast.makeText(ReportDetailActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -112,10 +110,11 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
     @Override
     public void reportClick(View v) {
         Toast.makeText(
-                AdminActivity.this,
+                ReportDetailActivity.this,
                 "listview的内部的举报按钮被点击了！，位置是-->" + (Integer) v.getTag()
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
         dialogEditReport();
     }
+
 }
