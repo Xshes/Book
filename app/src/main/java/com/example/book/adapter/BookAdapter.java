@@ -15,6 +15,7 @@ import java.util.List;
 public class BookAdapter extends ArrayAdapter {
     private final int resourceId;
 
+    // TODO: 2018/5/31 需要重构 
     public BookAdapter(Context context, int textViewResourceId, List<Book> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
@@ -24,8 +25,9 @@ public class BookAdapter extends ArrayAdapter {
         Book book = (Book) getItem(position); // 获取当前项的Book实例
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);//实例化一个对象
         TextView bookName = (TextView) view.findViewById(R.id.book_name);//获取该布局内的视图
-
-        bookName.setText(book.getName());//为视图设置资源
+        TextView BookAuthor = (TextView) view.findViewById(R.id.book_author);//获取该布局内的视图
+        bookName.setText(book.BookName);//为视图设置资源
+        BookAuthor.setText(book.BookAuthor);
         return view;
     }
 }
