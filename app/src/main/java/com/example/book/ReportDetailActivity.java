@@ -116,5 +116,8 @@ public class ReportDetailActivity extends Activity implements AdapterView.OnItem
                 Toast.LENGTH_SHORT).show();
         dialogEditReport();
     }
-
+    @Override
+    public void retransferClick(View v){
+        Toast.makeText(this,  "发布成功！", Toast.LENGTH_LONG).show();
+    }
 }

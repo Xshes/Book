@@ -116,4 +116,8 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
                 Toast.LENGTH_SHORT).show();
         dialogEditReport();
     }
+    @Override
+    public void retransferClick(View v){
+        Toast.makeText(BookCommentActivity.this,  "发布成功！", Toast.LENGTH_LONG).show();
+    }
 }

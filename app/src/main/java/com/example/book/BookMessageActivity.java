@@ -129,6 +129,10 @@ public class BookMessageActivity extends Activity implements AdapterView.OnItemC
                             + ",内容是-->" + contentList.get((Integer) v.getTag()),
                     Toast.LENGTH_SHORT).show();
         }
+    @Override
+    public void retransferClick(View v){
+        Toast.makeText(this,  "发布成功！", Toast.LENGTH_LONG).show();
+    }
     public  class MyOnSlipStatusListener implements SwipeListLayout.OnSwipeStatusListener {
 
         private SwipeListLayout slipListLayout;
@@ -163,6 +167,7 @@ public class BookMessageActivity extends Activity implements AdapterView.OnItemC
         public void onStartOpenAnimation() {
 
         }
+
 
     }
     class ContentAdapter extends BaseAdapter implements View.OnClickListener {
