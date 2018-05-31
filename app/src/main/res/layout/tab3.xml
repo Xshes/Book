@@ -13,6 +13,10 @@
             <TextView
                 android:id="@+id/nickname"
                 style="@style/usertext" android:text="昵称" />
+            <TextView
+                android:id="@+id/nameText"
+                style="@style/usertext"
+                android:text=""/>
             <ImageButton
                 android:id="@+id/myname"
                 style="@style/img_arrow"
@@ -27,7 +31,7 @@
             <TextView
                 android:id="@+id/signaturetext"
                 style="@style/usertext"
-                android:text="这是我酷炫的个性签名"/>
+                android:text=""/>
             <ImageButton
                 android:id="@+id/mysignature"
                 style="@style/img_arrow"

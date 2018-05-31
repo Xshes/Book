@@ -22,9 +22,9 @@ public class BookActivity extends Activity{
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();//获取传来的intent对象
         json = intent.getStringExtra("json");
-        Result<Book> result=gson.fromJson(json,Result.class);
-        bookList=result.list;
+        //Result<Book> result=gson.fromJson(json,Result.class);
         // TODO: 2018/5/31 处理数据并显示
+        //bookList=JsonHelp.arrayToList(result.list);
         setContentView(R.layout.book_list);
         BookAdapter adapter = new BookAdapter(BookActivity.this, R.layout.book_item, bookList);
         final ListView listView = (ListView) findViewById(R.id.list_view);
