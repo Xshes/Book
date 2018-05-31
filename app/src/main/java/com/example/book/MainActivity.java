@@ -77,8 +77,13 @@ public class MainActivity extends Activity {
             password_login.setInputType(PASSWORD_MIWEN);
             if (sp.getBoolean("auto_ischeck",false)){
                 auto_login.setChecked(true);
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-                startActivity(intent);
+                if (sp.getString("LOGINTYPE","").equals(userLogin)){
+                    Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(MainActivity.this,AdminActivity.class);
+                    startActivity(intent);
+                }
             }
         }
 
@@ -152,15 +157,23 @@ public class MainActivity extends Activity {
         if (res.equals(userLogin)){
             if (rememberpassword_login.isChecked()){
                 SharedPreferences.Editor editor=sp.edit();
+                editor.putString("LOGINTYPE",userLogin);
                 editor.putString("PHONEEDIT",idvalue);
                 editor.putString("PASSWORD",passwordvalue);
                 editor.commit();
-            }Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+            }
+            Intent intent = new Intent(MainActivity.this,SecondActivity.class);
             startActivity(intent);
-
             finish();
         }else if(res.equals(adminLogin))
         {
+            if (rememberpassword_login.isChecked()){
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putString("LOGINTYPE",adminLogin);
+                editor.putString("PHONEEDIT",idvalue);
+                editor.putString("PASSWORD",passwordvalue);
+                editor.commit();
+            }
             Intent intent = new Intent(MainActivity.this,AdminActivity.class);
             startActivity(intent);
             Toast.makeText(MainActivity.this, "管理员登陆", Toast.LENGTH_SHORT).show();
