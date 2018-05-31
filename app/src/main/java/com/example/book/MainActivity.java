@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
     String adminLogin="管理员登陆";
     String isBan="登陆失败，用户已被封禁";
     String json;
+    MyApplication application = (MyApplication)this.getApplication();
 
     private Handler handler  = new Handler(){
         public void handleMessage(Message msg) {
