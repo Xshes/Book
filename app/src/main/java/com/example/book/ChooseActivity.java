@@ -32,7 +32,7 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
     private File fileUri = new File(Environment.getExternalStorageDirectory().getPath() + "/photo.jpg");
     private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath() + "/crop_photo.jpg");
     private Uri imageUri;
-    private Uri cropImageUri;
+    public static Uri cropImageUri;
 
 
     @Override
