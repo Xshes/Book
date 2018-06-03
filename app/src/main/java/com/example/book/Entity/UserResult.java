@@ -3,10 +3,10 @@ package com.example.book.Entity;
 import java.util.List;
 
 /**
- * Created by youzi on 2018/5/30.
+ * Created by youzi on 2018/5/31.
  */
 
-public class Result<T> {
+public class UserResult {
     public String result;
-    public List<T> list;
+    public List<User> list;
 }

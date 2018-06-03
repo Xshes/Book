@@ -1,11 +1,12 @@
 package com.example.book.Entity;
 
+import java.util.List;
 
 /**
  * Created by youzi on 2018/5/31.
  */
 
-public class SingleResult<T> {
+public class BookResult {
     public String result;
-    public T list;
+    public List<Book> list;
 }

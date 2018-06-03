@@ -2,10 +2,8 @@ package com.example.book;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +14,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Handler;
 import android.os.Message;
+
 import com.example.book.Entity.SimResult;
+import com.example.book.Entity.User;
+import com.example.book.Entity.UserResult;
 import com.google.gson.*;
 
 import java.util.List;
@@ -35,18 +36,23 @@ public class MainActivity extends Activity {
     private String passwordvalue;
     private static final int PASSWORD_MIWEN = 0x81;
 
+    public static User loginUser;
     Gson gson = new Gson();
     String userLogin="用户登录";
     String adminLogin="管理员登陆";
     String isBan="登陆失败，用户已被封禁";
     String json;
-    MyApplication application = (MyApplication)this.getApplication();
+    String userJson;
+    String autoLoginAcc;
 
     private Handler handler  = new Handler(){
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 0x001:
                     SwitchAct();
+                    break;
+                case 0x002:
+                    SaveUser();
                     break;
                 default:
                     break;
@@ -78,9 +84,14 @@ public class MainActivity extends Activity {
             if (sp.getBoolean("auto_ischeck",false)){
                 auto_login.setChecked(true);
                 if (sp.getString("LOGINTYPE","").equals(userLogin)){
+                    //自动登陆后获取用户
+                    autoLoginAcc=sp.getString("userAccount","");
+                    GetUserAuto();
                     Intent intent = new Intent(MainActivity.this,SecondActivity.class);
                     startActivity(intent);
                 }else {
+                    autoLoginAcc=sp.getString("userAccount","");
+                    GetUserAuto();
                     Intent intent = new Intent(MainActivity.this,AdminActivity.class);
                     startActivity(intent);
                 }
@@ -151,17 +162,52 @@ public class MainActivity extends Activity {
         }.start();
     }
 
+    public void GetUserAuto(){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"User/Getuser?account="+autoLoginAcc;
+                    userJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x002);
+            };
+
+        }.start();
+    }
+
+    public void GetUser(){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"User/Getuser?account="+idvalue;
+                    userJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x002);
+            };
+
+        }.start();
+    }
+
     public void SwitchAct(){
         SimResult result = gson.fromJson(json,SimResult.class);
         String res=result.result;
+
         if (res.equals(userLogin)){
             if (rememberpassword_login.isChecked()){
                 SharedPreferences.Editor editor=sp.edit();
+                editor.putString("userAccount",idvalue);
                 editor.putString("LOGINTYPE",userLogin);
                 editor.putString("PHONEEDIT",idvalue);
                 editor.putString("PASSWORD",passwordvalue);
                 editor.commit();
             }
+            GetUser();
             Intent intent = new Intent(MainActivity.this,SecondActivity.class);
             startActivity(intent);
             finish();
@@ -174,6 +220,7 @@ public class MainActivity extends Activity {
                 editor.putString("PASSWORD",passwordvalue);
                 editor.commit();
             }
+            GetUser();
             Intent intent = new Intent(MainActivity.this,AdminActivity.class);
             startActivity(intent);
             Toast.makeText(MainActivity.this, "管理员登陆", Toast.LENGTH_SHORT).show();
@@ -185,6 +232,13 @@ public class MainActivity extends Activity {
         else{
             Toast.makeText(MainActivity.this, "用户名或密码错误，请重新登录", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void SaveUser(){
+        UserResult result = gson.fromJson(userJson,UserResult.class);
+        String res=result.result;
+        List<User> users =result.list;
+        loginUser=users.get(0);
     }
 
 
