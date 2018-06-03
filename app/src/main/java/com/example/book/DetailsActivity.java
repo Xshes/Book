@@ -4,33 +4,24 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 public class DetailsActivity extends Activity{
-    private TextView nameOfBook;
-    private TextView authorOfBook;
-
-    String bookNum;
-    String bookName;
-    String bookAuthor;
+    String json;
+    private String[] mComment = {"好看", "真好看", "超级无敌好看", "上面的都是骗子","我试试特别长的评论会怎么显示呢，真是好奇啊，好想看看啊"};
+    private ListView mListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();//获取传来的intent对象
-        // TODO: 2018/5/31 图片传输过来
-        bookNum = intent.getStringExtra("bookNum");
-        bookName = intent.getStringExtra("bookName");
-        bookAuthor = intent.getStringExtra("bookAuthor");
+        json = intent.getStringExtra("json");
         setContentView(R.layout.activity_details);
-
-        nameOfBook=findViewById(R.id.book_Name);
-        authorOfBook=findViewById(R.id.book_author);
-
-        bookName=nameOfBook.getText()+bookName;
-        bookAuthor=authorOfBook.getText()+bookAuthor;
-        nameOfBook.setText(bookName);
-        authorOfBook.setText(bookAuthor);
+        mListView = (ListView) findViewById(R.id.Comment_list);
+        mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mComment));
+        mListView.setTextFilterEnabled(true);
 
         final PullUpToLoadMore ptlm= (PullUpToLoadMore) findViewById(R.id.ptlm);
         findViewById(R.id.apply).setOnClickListener(new View.OnClickListener() {
@@ -46,5 +37,4 @@ public class DetailsActivity extends Activity{
             }
         });
     }
-    // TODO: 2018/5/31 书籍评论用列表显示
 }

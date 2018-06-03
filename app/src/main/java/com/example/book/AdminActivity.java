@@ -21,28 +21,25 @@ import java.util.List;
 
 public class AdminActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
-    private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
-    private List<String> contentList;
+    private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉", "一条鱼", "一只狗", "一个壮汉", "一条鱼", "一只狗", "一个壮汉" };
+    public static List<String> contentList;
     private ListView mListView;
-    private Button logoutbtn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        logoutbtn=(Button)findViewById(R.id.logout);
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
+
+        init();
+        findViewById(R.id.jumpto).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(AdminActivity.this,MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                SharedPreferences.Editor editor = MainActivity.sp.edit();
-                editor.clear();
-                editor.commit();
+                Intent intent = new Intent(AdminActivity.this,UnbanActivity.class);
                 startActivity(intent);
             }
         });
-        init();
     }
 
     private void init() {
@@ -102,25 +99,48 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
     }
 
     private void dialogEditReport() {
-        final EditText editText = new EditText(this);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this,3);
-        builder.setTitle("封禁");
-        editText.setHeight(240);
-        builder.setView(editText);
-        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(AdminActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+//        final EditText editText = new EditText(this);
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(this,3);
+//        builder.setTitle("封禁");
+//        editText.setHeight(240);
+//        builder.setView(editText);
+//        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Toast.makeText(AdminActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
+//        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//        builder.create().show();
+        final String items[] = {"一天", "一周", "一个月", "半年", "永久封禁"};
+        AlertDialog dialog = new AlertDialog.Builder(this)
 
-            }
-        });
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.create().show();
+                .setTitle("封禁时长选择")//设置对话框的标题
+                .setSingleChoiceItems(items, 1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(AdminActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+        dialog.show();
     }
 
     @Override
@@ -131,9 +151,12 @@ public class AdminActivity extends Activity implements AdapterView.OnItemClickLi
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
         dialogEditReport();
+
+
     }
     @Override
     public void retransferClick(View v){
         Toast.makeText(this,  "发布成功！", Toast.LENGTH_LONG).show();
+
     }
 }

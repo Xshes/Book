@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.book.AdminActivity;
 import com.example.book.R;
 import com.example.book.adapter.inter.InterClick;
 
@@ -19,6 +20,8 @@ public class AdminBanAdapter extends BaseAdapter implements View.OnClickListener
     private List<String> mContentList;
     private LayoutInflater mInflater;
     private InterClick mCallback;
+
+
 
     public AdminBanAdapter(Context context, List<String> contentList,
                               InterClick callback) {
@@ -46,7 +49,7 @@ public class AdminBanAdapter extends BaseAdapter implements View.OnClickListener
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         Log.i(TAG, "getView");
         AdminBanAdapter.ViewHolder holder = null;
         if (convertView == null) {
@@ -56,7 +59,7 @@ public class AdminBanAdapter extends BaseAdapter implements View.OnClickListener
                     .findViewById(R.id.bk_name);
             holder.button1 = (Button) convertView.findViewById(R.id.report_detail);
             holder.button2 = (Button) convertView.findViewById(R.id.ban);
-
+            holder.button3=(Button)convertView.findViewById(R.id.del_detail);
             convertView.setTag(holder);
         } else {
             holder = (AdminBanAdapter.ViewHolder) convertView.getTag();
@@ -64,10 +67,18 @@ public class AdminBanAdapter extends BaseAdapter implements View.OnClickListener
         holder.textView.setText(mContentList.get(position));
         holder.button1.setOnClickListener(this);
         holder.button2.setOnClickListener(this);
+        holder.button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AdminActivity.contentList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 
         // 设置位置，获取点击的条目按钮
         holder.button1.setTag(position);
         holder.button2.setTag(position);
+        holder.button3.setTag(position);
         return convertView;
     }
 
@@ -75,6 +86,7 @@ public class AdminBanAdapter extends BaseAdapter implements View.OnClickListener
         public TextView textView;
         public Button button1;
         public Button button2;
+        public Button button3;
 
     }
 
