@@ -23,20 +23,23 @@ import com.example.book.adapter.inter.InterClick;
 public class TransferBookActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
     private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
-    private List<Book> contentList;
+    private List<String> contentList;
     private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
-// TODO: 2018/5/31  需要传入数据 本页面为"我的转让"
+
         init();
     }
 
     private void init() {
         mListView = (ListView) findViewById(R.id.book_listview);
-        contentList = new ArrayList<Book>();
+        contentList = new ArrayList<String>();
+        for (int i = 0; i < CONTENTS.length; i++) {
+            contentList.add(CONTENTS[i]);
+        }
         mListView.setAdapter(new BookAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
     }

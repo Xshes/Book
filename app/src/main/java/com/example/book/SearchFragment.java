@@ -99,18 +99,19 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
             @Override
             public void onClick(View view) {
                 param = searchname.getText().toString();
-                //Toast.makeText(getActivity(), "数据1为:" + param, Toast.LENGTH_SHORT).show();
+                // TODO: 2018/5/31 注释本段的Toast
+                Toast.makeText(getActivity(), "数据1为:" + param, Toast.LENGTH_SHORT).show();
                 if (sRg1.getCheckedRadioButtonId() != -1) {
                     RadioButton radioButton = (RadioButton) getActivity().findViewById(sRg1.getCheckedRadioButtonId());
                     selectText = radioButton.getText().toString();
                     GetBookList();
-                    //Toast.makeText(getActivity(), "数据2为:" + selectText, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "数据2为:" + selectText, Toast.LENGTH_SHORT).show();
 
                 } else if (sRg2.getCheckedRadioButtonId() != -1) {
                     RadioButton radioButton = (RadioButton) getActivity().findViewById(sRg2.getCheckedRadioButtonId());
                     selectText = radioButton.getText().toString();
                     GetBookList();
-                    //Toast.makeText(getActivity(), "数据2为:" + selectText, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "数据2为:" + selectText, Toast.LENGTH_SHORT).show();
                 } else {
                     GetBookList();
                 }
