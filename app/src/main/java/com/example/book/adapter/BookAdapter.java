@@ -17,11 +17,11 @@ import java.util.List;
 
 public class BookAdapter extends BaseAdapter {
     private static final String TAG = "ContentAdapter";
-    private List<String> mContentList;
+    private List<Book> mContentList;
     private LayoutInflater mInflater;
     private InterClick mCallback;
 
-    public BookAdapter(Context context, List<String> contentList,
+    public BookAdapter(Context context, List<Book> contentList,
                        InterClick callback) {
         mContentList = contentList;
         mInflater = LayoutInflater.from(context);
@@ -55,42 +55,22 @@ public class BookAdapter extends BaseAdapter {
             holder = new BookAdapter.ViewHolder();
             holder.textView = (TextView) convertView
                     .findViewById(R.id.book_name);
-//            holder.button1 = (Button) convertView.findViewById(R.id.report_detail);
-//            holder.button2 = (Button) convertView.findViewById(R.id.ban);
+            holder.uptextView= (TextView) convertView
+                    .findViewById(R.id.up_name);
 
             convertView.setTag(holder);
         } else {
             holder = (BookAdapter.ViewHolder) convertView.getTag();
         }
-        holder.textView.setText(mContentList.get(position));
-//        holder.button1.setOnClickListener(this);
-////        holder.button2.setOnClickListener(this);
-
-        // 设置位置，获取点击的条目按钮
-//        holder.button1.setTag(position);
-//        holder.button2.setTag(position);
+        holder.textView.setText(mContentList.get(position).BookName);
+        holder.uptextView.setText(mContentList.get(position).BookAuthor);
         return convertView;
     }
 
     public class ViewHolder {
         public TextView textView;
-//        public Button button1;
-//        public Button button2;
+        public TextView uptextView;
 
     }
 
-//     响应按钮点击事件,调用子定义接口，并传入View
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.report_detail:
-//                mCallback.commentClick(v);
-//                break;
-//            case R.id.ban:
-//                mCallback.reportClick(v);
-//                break;
-//            default:
-//                break;
-//        }
-//    }
 }

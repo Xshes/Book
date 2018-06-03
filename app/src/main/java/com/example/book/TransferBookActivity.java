@@ -52,6 +52,7 @@ public class TransferBookActivity extends Activity implements AdapterView.OnItem
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: 2018/5/31  需要传入数据 本页面为"我的转让"
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
         user=MainActivity.loginUser;
@@ -134,6 +135,7 @@ public class TransferBookActivity extends Activity implements AdapterView.OnItem
 
     private void init() {
         mListView = (ListView) findViewById(R.id.book_listview);
+        contentList = new ArrayList<Book>();
         mListView.setAdapter(new BookAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
     }
