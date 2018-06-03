@@ -5,12 +5,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.book.Entity.BookResult;
+import com.example.book.Entity.Transfer;
+import com.example.book.Entity.TransferResult;
+import com.example.book.Entity.User;
 import com.example.book.adapter.AdminBanAdapter;
 import com.example.book.adapter.BookAdapter;
 
@@ -19,27 +25,115 @@ import java.util.List;
 
 import com.example.book.Entity.Book;
 import com.example.book.adapter.inter.InterClick;
+import com.google.gson.Gson;
 
 public class TransferBookActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
-    private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
-    private List<String> contentList;
+    // static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
+    private List<Book> contentList=new ArrayList<Book>();
     private ListView mListView;
-
+    User user;
+    String json;
+    String bookJson;
+    Gson gson=new Gson();
+    private Handler handler  = new Handler(){
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 0x001:
+                    SearchBookList();
+                    break;
+                case 0x002:
+                    SetContentList();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_list);
+        user=MainActivity.loginUser;
+        GetTransfer();
+    }
 
-        init();
+    public void GetTransfer()    {
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"Transfer/GetTransList?account="+user.UserAccount;
+                    json =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x001);
+            };
+
+        }.start();
+    }
+
+    public void GetBook(final String bookNums)    {
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"Book/GetBookByNumList?bookNums="+bookNums;
+                    bookJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x002);
+            };
+
+        }.start();
+    }
+
+    public void SearchBookList(){
+        TransferResult result = gson.fromJson(json,TransferResult.class);
+        String res=result.result;
+        if(res.equals("查询成功")) {
+            List<Transfer> transfers = result.list;
+            List<String> bookNums=new ArrayList<String>();
+            //通过Transfer列表获取book列表
+            for (Transfer transfer : transfers) {
+                bookNums.add(transfer.BookNumber);
+            }
+            String bookBumStr=gson.toJson(bookNums,List.class);
+            GetBook(bookBumStr);
+
+        }
+        else
+        {
+            Toast.makeText(this, res+"请重试！！！", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,SecondActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
+    public void SetContentList()
+    {
+        BookResult result = gson.fromJson(bookJson,BookResult.class);
+        String res=result.result;
+        if(res.equals("查询成功")) {
+            List<Book> books = result.list;
+            // TODO: 2018/6/1 需要去除重复值
+            for(Book book:books)
+                contentList.add(book);
+            init();
+        }
+        else
+        {
+            Toast.makeText(this, res+"请重试！！！", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,SecondActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void init() {
         mListView = (ListView) findViewById(R.id.book_listview);
-        contentList = new ArrayList<String>();
-        for (int i = 0; i < CONTENTS.length; i++) {
-            contentList.add(CONTENTS[i]);
-        }
         mListView.setAdapter(new BookAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
     }
