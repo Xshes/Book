@@ -52,6 +52,8 @@ public class BookActivity extends Activity implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
         Toast.makeText(this, "点击的条目位置是-->" + position, Toast.LENGTH_SHORT)
                 .show();
+        Intent intent = new Intent(BookActivity.this,DetailsActivity.class);
+        startActivity(intent);
     }
 
     /**

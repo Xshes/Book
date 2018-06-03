@@ -26,12 +26,12 @@
         <!--android:layout_gravity="bottom|center"-->
         <!--te-->
         <!--app:elevation="8dp"/>-->
+
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/jumpto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:text="注销"/>
-
+        android:text="跳转至解封页面"/>
 </RelativeLayout>
