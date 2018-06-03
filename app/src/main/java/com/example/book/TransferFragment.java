@@ -1,6 +1,7 @@
 package com.example.book;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.book.utils.PhotoUtils;
 
 /**
  * Created by 72784 on 2018/5/8.
@@ -80,6 +83,7 @@ public class TransferFragment extends Fragment implements CompoundButton.OnCheck
         bookauthor = (TextView) getActivity().findViewById(R.id.book_author);
         Button subutton = (Button) getActivity().findViewById(R.id.submit_button);
         Button bindbutton=(Button) getActivity().findViewById(R.id.book_binding);
+        Bitmap bitmap = PhotoUtils.getBitmapFromUri(ChooseActivity.cropImageUri, getActivity());
         subutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

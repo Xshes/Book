@@ -1,24 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.book.SwipeListLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content" >
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/book_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginLeft="10dip" />
-        <TextView
-            android:id="@+id/up_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="作者：X"
-            android:layout_marginLeft="10dip" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal" >
+
     </LinearLayout>
 
-</LinearLayout>
+    <RelativeLayout
+
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/touch_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+        <!--<Button-->
+        <!--android:id="@+id/retransfer"-->
+        <!--android:layout_width="85dp"-->
+        <!--android:layout_height="33dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_marginEnd="220dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:background="@drawable/touch_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:text="再发布"-->
+        <!--android:textColor="@color/txt_color"/>-->
+
+        <!--<Button-->
+        <!--android:id="@+id/report"-->
+        <!--android:layout_width="85dp"-->
+        <!--android:layout_height="33dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_marginEnd="120dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:background="@drawable/touch_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:text="举报"-->
+        <!--android:textColor="@color/txt_color"/>-->
+
+        <!--<Button-->
+        <!--android:id="@+id/comment"-->
+        <!--android:layout_width="85dp"-->
+        <!--android:layout_height="33dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_marginEnd="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:background="@drawable/touch_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:text="评论"-->
+        <!--android:textColor="@color/txt_color"/>-->
+
+        <TextView
+            android:id="@+id/book_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="16dp"
+            android:text="Shooting Stars"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/up_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/book_name"
+            android:layout_alignStart="@+id/book_name"
+            android:layout_below="@+id/book_name"
+            android:layout_weight="1"
+            android:text="作者：X "
+            android:textColor="@color/txt_color"
+            android:textSize="13sp"/>
+
+
+    </RelativeLayout>
+
+</com.example.book.SwipeListLayout>
