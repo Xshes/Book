@@ -33,8 +33,8 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
     //private static final String[] CONTENTS = { "时间简史", "绝地求生", "暴走漫画" };
     private List<Book> contentList=new ArrayList<>();
     private ListView mListView;
-    int evlFlag=0;
     List<Evaluate> evaluates= new ArrayList<>();
+    String EvaBookNum;
     User user;
     String json;
     String bookJson;
@@ -153,12 +153,12 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
     }
 
     //获取评论
-    private void GetEva(final String bookNumber,final String userAcc){
+    private void GetEva(final String userAcc){
         new Thread() {
             public void run() {
                 try {
                     //构造连接字符串，并查询
-                    String loginURL=GetData.url+"Evaluate/GetByBookandUser?bookNum="+bookNumber+"&userAcc="+userAcc;
+                    String loginURL=GetData.url+"Evaluate/GetByBookandUser?bookNum="+EvaBookNum+"&userAcc="+userAcc;
                     evaJson =GetData.getJson(loginURL);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -175,7 +175,12 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         String res=result.result;
         if(res.equals("查询成功")) {
             evaluates=result.list;
-            evlFlag=1;
+            if(evaluates.size()==0)
+                dialogEditComment(EvaBookNum,user.UserAccount);
+            else {
+                Toast.makeText(this, "本书已评论，请勿重复评论。", Toast.LENGTH_SHORT).show();
+                dialogShowComment(evaluates.get(0).CommentContent);
+            }
         }
         else
         {
@@ -236,16 +241,8 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
     @Override
     public void commentClick(View v) {
         Book book = contentList.get((Integer) v.getTag());
-        GetEva(book.BookNumber,user.UserAccount);
-        if(evlFlag==1)
-        {
-            if(evaluates.size()==0)
-                dialogEditComment(book.BookNumber,user.UserAccount);
-            else {
-                Toast.makeText(this, "本书已评论，请勿重复评论。", Toast.LENGTH_SHORT).show();
-                dialogShowComment(evaluates.get(0).CommentContent);
-            }
-        }
+        EvaBookNum=book.BookNumber;
+        GetEva(user.UserAccount);
     }
 
     private void dialogShowComment(String comment) {
