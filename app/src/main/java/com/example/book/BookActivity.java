@@ -24,7 +24,7 @@ import com.example.book.Entity.*;
 public class BookActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
     private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
-    private List<String> contentList;
+    private List<Book> contentList;
     private ListView mListView;
 
     @Override
@@ -37,7 +37,7 @@ public class BookActivity extends Activity implements AdapterView.OnItemClickLis
 
     private void init() {
         mListView = (ListView) findViewById(R.id.book_listview);
-        contentList = new ArrayList<String>();
+        contentList = new ArrayList<Book>();
         for (int i = 0; i < CONTENTS.length; i++) {
             contentList.add(CONTENTS[i]);
         }
