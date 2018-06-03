@@ -27,20 +27,23 @@ public class BookActivity extends Activity implements AdapterView.OnItemClickLis
     private List<Book> contentList;
     private ListView mListView;
 
+    Gson gson = new Gson();
+    String json;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();//获取传来的intent对象
+        json = intent.getStringExtra("json");
+        BookResult result=gson.fromJson(json,BookResult.class);
+        contentList=result.list;
         setContentView(R.layout.book_list);
-
         init();
     }
 
     private void init() {
         mListView = (ListView) findViewById(R.id.book_listview);
-        contentList = new ArrayList<Book>();
-        for (int i = 0; i < CONTENTS.length; i++) {
-            contentList.add(CONTENTS[i]);
-        }
+
         mListView.setAdapter(new BookAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
     }
@@ -50,9 +53,13 @@ public class BookActivity extends Activity implements AdapterView.OnItemClickLis
      */
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        Toast.makeText(this, "点击的条目位置是-->" + position, Toast.LENGTH_SHORT)
-                .show();
-        Intent intent = new Intent(BookActivity.this,DetailsActivity.class);
+
+        Intent intent = new Intent(this,DetailsActivity.class);
+        Book book=contentList.get(position);
+        intent.putExtra("bookNum",book.BookNumber);
+        intent.putExtra("bookName",book.BookName);
+        intent.putExtra("bookAuthor",book.BookAuthor);
+
         startActivity(intent);
     }
 
