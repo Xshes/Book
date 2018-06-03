@@ -55,7 +55,6 @@ public class BaseActivity extends AppCompatActivity {
                                     .setPositiveButton("去授权", new DialogInterface.OnClickListener() {//添加确定按钮
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
-                                            //TODO Auto-generated method stub
                                             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                                             Uri uri = Uri.fromParts("package", getApplicationContext().getPackageName(), null);
                                             intent.setData(uri);
@@ -65,7 +64,6 @@ public class BaseActivity extends AppCompatActivity {
                                     }).setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加返回按钮
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {//响应事件
-                                    // TODO Auto-generated method stub
                                     dialog.dismiss();
                                 }
                             }).setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -115,7 +113,6 @@ public class BaseActivity extends AppCompatActivity {
                             .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
-                                    //TODO Auto-generated method stub
                                     ActivityCompat.requestPermissions(((Activity) context), permissions, mRequestCode);
                                 }
                             }).show();//在按键响应事件中显示此对话框
