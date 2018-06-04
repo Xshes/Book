@@ -234,7 +234,6 @@ public class MainActivity extends Activity {
     }
     public void SaveUser(){
         UserResult result = gson.fromJson(userJson,UserResult.class);
-        String res=result.result;
         List<User> users =result.list;
         loginUser=users.get(0);
     }

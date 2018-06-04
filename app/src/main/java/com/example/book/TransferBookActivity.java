@@ -119,9 +119,16 @@ public class TransferBookActivity extends Activity implements AdapterView.OnItem
         String res=result.result;
         if(res.equals("查询成功")) {
             List<Book> books = result.list;
-            // TODO: 2018/6/1 需要去除重复值
-            for(Book book:books)
-                contentList.add(book);
+            for(Book book:books) {
+                int flag=0;
+                for(Book content:contentList)
+                {
+                    if(content.BookNumber.equals(book.BookNumber))
+                        flag=1;
+                }
+                if(flag==0)
+                    contentList.add(book);
+            }
             init();
         }
         else
