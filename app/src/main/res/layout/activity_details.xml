@@ -47,31 +47,19 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/book_Name"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="时间简史"
+                            android:text=""
                             android:textSize="24sp"/>
 
                         <TextView
+                            android:id="@+id/book_author"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:text="作者："
-                            android:textSize="18sp"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="上传者："
-                            android:textSize="18sp"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="转让者："
                             android:textSize="18sp"/>
 
 
