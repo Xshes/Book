@@ -103,12 +103,14 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
                 if (sRg1.getCheckedRadioButtonId() != -1) {
                     RadioButton radioButton = (RadioButton) getActivity().findViewById(sRg1.getCheckedRadioButtonId());
                     selectText = radioButton.getText().toString();
+                    ChangeAct();
                     GetBookList();
                     //Toast.makeText(getActivity(), "数据2为:" + selectText, Toast.LENGTH_SHORT).show();
 
                 } else if (sRg2.getCheckedRadioButtonId() != -1) {
                     RadioButton radioButton = (RadioButton) getActivity().findViewById(sRg2.getCheckedRadioButtonId());
                     selectText = radioButton.getText().toString();
+                    ChangeAct();
                     GetBookList();
                     //Toast.makeText(getActivity(), "数据2为:" + selectText, Toast.LENGTH_SHORT).show();
                 } else {
@@ -141,7 +143,8 @@ public class SearchFragment extends Fragment implements CompoundButton.OnChecked
     public void ChangeAct()
     {
         Intent intent = new Intent(getActivity(), BookActivity.class);
-        intent.putExtra("json",json);
+        intent.putExtra("param",param);
+        intent.putExtra("tag",selectText);
         startActivity(intent);
     }
 

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
+import android.os.*;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -23,18 +23,57 @@ import com.example.book.Entity.*;
 
 public class BookActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
-    private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
     private List<Book> contentList;
     private ListView mListView;
 
     Gson gson = new Gson();
     String json;
+    String tag;
+    String param;
 
+
+    private Handler handler  = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what){
+                case 0x001:
+                    SetVal();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    public void GetBookList()
+    {
+        new Thread() {
+            public void run() {
+                try {
+                    String loginURL;
+                    //构造连接字符串，并查询
+                    if(tag!=null)
+                        loginURL=GetData.url+"Book/search?param="+param+"&tag="+tag;
+                    else
+                        loginURL=GetData.url+"Book/search?param="+param;
+                    json =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x001);
+            }
+        }.start();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();//获取传来的intent对象
-        json = intent.getStringExtra("json");
+        param = intent.getStringExtra("param");
+        tag = intent.getStringExtra("tag");
+        GetBookList();
+    }
+
+    private void SetVal()
+    {
         BookResult result=gson.fromJson(json,BookResult.class);
         contentList=result.list;
         setContentView(R.layout.book_list);

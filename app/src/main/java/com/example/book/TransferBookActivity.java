@@ -150,8 +150,6 @@ public class TransferBookActivity extends Activity implements AdapterView.OnItem
      */
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        Toast.makeText(this, "点击的条目位置是-->" + position, Toast.LENGTH_SHORT)
-                .show();
     }
 
     /**
