@@ -306,7 +306,6 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         Toast.makeText(this, result.result, Toast.LENGTH_SHORT).show();
     }
 
-    // TODO: 2018/6/3 再发布和举报按钮的功能未实现 
     private void init() {
         mListView = (ListView) findViewById(R.id.comment_listview);
         mListView.setAdapter(new BookCommentAdapter(this, contentList, this));
