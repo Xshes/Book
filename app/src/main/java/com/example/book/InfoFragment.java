@@ -179,6 +179,7 @@ public class InfoFragment extends Fragment{
                 Toast.makeText(getActivity(), editText.getText().toString() + "", Toast.LENGTH_LONG).show();
                 nowsignature.setText(editText.getText());
                 editSignature(editText.getText().toString());
+                MainActivity.loginUser.UserSignature=editText.getText().toString();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -201,6 +202,7 @@ public class InfoFragment extends Fragment{
                 nameText.setText(editText.getText());
                 editUserName(editText.getText().toString());
                 nowname.setText(editText.getText());
+                MainActivity.loginUser.UserName=editText.getText().toString();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

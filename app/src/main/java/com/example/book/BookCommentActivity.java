@@ -35,11 +35,15 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
     private ListView mListView;
     List<Evaluate> evaluates= new ArrayList<>();
     String EvaBookNum;
+    String PubBookNum;
     User user;
     String json;
     String bookJson;
     String evaJson;
     String evaCrateJson;
+    String repCrateJson;
+    String pubResJson;
+    String pubJson;
     Gson gson=new Gson();
     private Handler handler  = new Handler(){
         public void handleMessage(Message msg) {
@@ -54,7 +58,16 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
                     SaveEva();
                     break;
                 case 0x004:
-                    SaveCrateEva();
+                    ShowCrateEva();
+                    break;
+                case 0x005:
+                    ShowCreateRep();
+                    break;
+                case 0x006:
+                    SetPublish();
+                    break;
+                case 0x007:
+                    ShowPublish();
                     break;
                 default:
                     break;
@@ -102,6 +115,92 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
 
         }.start();
     }
+
+    //获取评论
+    private void GetEva(final String userAcc){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"Evaluate/GetByBookandUser?bookNum="+EvaBookNum+"&userAcc="+userAcc;
+                    evaJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x003);
+            }
+
+        }.start();
+    }
+
+    //新建评论
+    private void CrateEva(final String bookNum,final String content,final String account){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"Evaluate/Create?bookNum="+bookNum+"&content="+content+"&account="+account;
+                    evaCrateJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x004);
+            }
+
+        }.start();
+    }
+
+    //新建举报
+    private void CreateReport(final String reason,final String bookNum,final String reportObj){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"Report/Create?type="+reason+"&bookNum="+bookNum+"&reportObj="+reportObj;
+                    repCrateJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x005);
+            }
+
+        }.start();
+    }
+
+    //获取发布结果
+    private void GetPublishResearch(final String bookNum,final String account){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"Publish/GetResult?bookNum="+bookNum+"&account="+account;
+                    pubResJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x006);
+            }
+
+        }.start();
+    }
+
+    //再发布书籍
+    private void PublishBook(){
+        new Thread() {
+            public void run() {
+                try {
+                    //构造连接字符串，并查询
+                    String loginURL=GetData.url+"Publish/Create?bookNum="+PubBookNum+"&account="+user.UserAccount;
+                    pubJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x007);
+            }
+
+        }.start();
+    }
+
 
     //查询列表的内容
     private void SearchBookList(){
@@ -152,23 +251,6 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         }
     }
 
-    //获取评论
-    private void GetEva(final String userAcc){
-        new Thread() {
-            public void run() {
-                try {
-                    //构造连接字符串，并查询
-                    String loginURL=GetData.url+"Evaluate/GetByBookandUser?bookNum="+EvaBookNum+"&userAcc="+userAcc;
-                    evaJson =GetData.getJson(loginURL);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                handler.sendEmptyMessage(0x003);
-            }
-
-        }.start();
-    }
-
     //解析评论详情
     private void SaveEva(){
         EvaluateResult result = gson.fromJson(evaJson,EvaluateResult.class);
@@ -188,25 +270,8 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         }
     }
 
-    //新建评论
-    private void CrateEva(final String bookNum,final String content,final String account){
-        new Thread() {
-            public void run() {
-                try {
-                    //构造连接字符串，并查询
-                    String loginURL=GetData.url+"Evaluate/Create?bookNum="+bookNum+"&content="+content+"&account="+account;
-                    evaCrateJson =GetData.getJson(loginURL);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                handler.sendEmptyMessage(0x004);
-            }
-
-        }.start();
-    }
-
     //解析新建评论结果
-    private void SaveCrateEva(){
+    private void ShowCrateEva(){
         SimResult result = gson.fromJson(evaCrateJson,SimResult.class);
         String res=result.result;
         if(res.equals("创建成功")) {
@@ -217,6 +282,31 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
             Toast.makeText(this, res+"请重试！！！", Toast.LENGTH_SHORT).show();
         }
     }
+
+    //解析举报结果
+    private void ShowCreateRep(){
+        SimResult result = gson.fromJson(repCrateJson,SimResult.class);
+        Toast.makeText(this, result.result, Toast.LENGTH_SHORT).show();
+    }
+
+    //解析查询的发布结果
+    private void SetPublish(){
+        SimResult result = gson.fromJson(pubResJson,SimResult.class);
+        String res=result.result;
+        if(res.equals("已发布"))
+            Toast.makeText(this, "本书已经再发布，请勿重复发布", Toast.LENGTH_SHORT).show();
+        else
+            PublishBook();
+    }
+
+    //解析发布结果
+    private void ShowPublish()
+    {
+        SimResult result = gson.fromJson(pubJson,SimResult.class);
+        Toast.makeText(this, result.result, Toast.LENGTH_SHORT).show();
+    }
+
+    // TODO: 2018/6/3 再发布和举报按钮的功能未实现 
     private void init() {
         mListView = (ListView) findViewById(R.id.comment_listview);
         mListView.setAdapter(new BookCommentAdapter(this, contentList, this));
@@ -230,8 +320,6 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
      */
     @Override
     public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
-        Toast.makeText(this, "点击的条目位置是-->" + position, Toast.LENGTH_SHORT)
-                .show();
     }
 
     /**
@@ -283,7 +371,13 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         builder.create().show();
     }
 
-    private void dialogEditReport() {
+    @Override
+    public void reportClick(View v) {
+        Book book = contentList.get((Integer) v.getTag());
+        String bookNumber=book.BookNumber;
+        dialogEditReport(bookNumber);
+    }
+    private void dialogEditReport(final String bookNum) {
         final EditText editText = new EditText(this);
         final AlertDialog.Builder builder = new AlertDialog.Builder(this,3);
         builder.setTitle("举报详情");
@@ -293,7 +387,7 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(BookCommentActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
-
+                CreateReport(editText.getText().toString(),bookNum,user.UserAccount);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -306,16 +400,10 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
     }
 
     @Override
-    public void reportClick(View v) {
-        Toast.makeText(
-                BookCommentActivity.this,
-                "listview的内部的举报按钮被点击了！，位置是-->" + (Integer) v.getTag()
-                        + ",内容是-->" + contentList.get((Integer) v.getTag()),
-                Toast.LENGTH_SHORT).show();
-        dialogEditReport();
-    }
-    @Override
     public void retransferClick(View v){
-        Toast.makeText(BookCommentActivity.this,  "发布成功！", Toast.LENGTH_LONG).show();
+        Book book = contentList.get((Integer) v.getTag());
+        PubBookNum=book.BookNumber;
+        GetPublishResearch(PubBookNum,user.UserAccount);
+        //Toast.makeText(BookCommentActivity.this,  "发布成功！", Toast.LENGTH_LONG).show();
     }
 }

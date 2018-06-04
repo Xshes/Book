@@ -84,6 +84,7 @@ public class TransferFragment extends Fragment implements CompoundButton.OnCheck
         Button subutton = (Button) getActivity().findViewById(R.id.submit_button);
         Button bindbutton=(Button) getActivity().findViewById(R.id.book_binding);
         Bitmap bitmap = PhotoUtils.getBitmapFromUri(ChooseActivity.cropImageUri, getActivity());
+        // TODO: 2018/6/4 bitmap 需要判空
         subutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
