@@ -36,7 +36,7 @@ public class DetailsActivity extends Activity{
     String bookName;
     String bookAuthor;
     Gson gson=new Gson();
-
+    // TODO: 2018/6/4 完成按钮申请的功能
     private Handler handler  = new Handler(){
         public void handleMessage(android.os.Message msg) {
             switch (msg.what){
