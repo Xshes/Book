@@ -222,7 +222,7 @@ public class MainActivity extends Activity {
             GetUser();
             Intent intent = new Intent(MainActivity.this,AdminActivity.class);
             startActivity(intent);
-            Toast.makeText(MainActivity.this, "管理员登陆", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "管理员登陆", Toast.LENGTH_SHORT).show();
         }
         else if(res.equals(isBan))
         {

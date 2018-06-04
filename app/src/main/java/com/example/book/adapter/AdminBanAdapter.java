@@ -1,6 +1,7 @@
 package com.example.book.adapter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +11,37 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.book.AdminActivity;
+import com.example.book.Entity.SimResult;
+import com.example.book.Entity.StrResult;
+import com.example.book.Entity.User;
+import com.example.book.GetData;
 import com.example.book.R;
 import com.example.book.adapter.inter.InterClick;
+import com.google.gson.Gson;
 
 import java.util.List;
+
 
 public class AdminBanAdapter extends BaseAdapter implements View.OnClickListener {
     private static final String TAG = "ContentAdapter";
     private List<String> mContentList;
     private LayoutInflater mInflater;
     private InterClick mCallback;
+    public static void DeleteItem(final String obj)
+    {
+        new Thread() {
+            public void run() {
+                try {
+                    String loginURL;
+                    //构造连接字符串，并查询
+                    loginURL= GetData.url+"Report/DeleteByObj?obj="+obj;
+                    String Json =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
 
 
 
@@ -70,8 +92,10 @@ public class AdminBanAdapter extends BaseAdapter implements View.OnClickListener
         holder.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DeleteItem(mContentList.get(position));
                 AdminActivity.contentList.remove(position);
                 notifyDataSetChanged();
+
             }
         });
 
