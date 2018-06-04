@@ -16,7 +16,11 @@ import android.widget.Toast;
 
 import com.example.book.Entity.Book;
 import com.example.book.Entity.BookResult;
+import com.example.book.Entity.MessageResult;
+import com.example.book.Entity.SimResult;
 import com.example.book.Entity.StrResult;
+import com.example.book.Entity.StrResult_1;
+import com.example.book.Entity.User;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -30,13 +34,16 @@ public class DetailsActivity extends Activity{
     private TextView authorOfBook;
     private ImageView cover;
 
+    User user;
     String bookjson;
     String evajson;
+    String sendjson;
+    String publishjson;
     String bookNum;
     String bookName;
     String bookAuthor;
+    String publishAcc;
     Gson gson=new Gson();
-    // TODO: 2018/6/4 完成按钮申请的功能
     private Handler handler  = new Handler(){
         public void handleMessage(android.os.Message msg) {
             switch (msg.what){
@@ -45,6 +52,12 @@ public class DetailsActivity extends Activity{
                     break;
                 case 0x002:
                     SetEva();
+                    break;
+                case 0x003:
+                    SetPublisAccount();
+                    break;
+                case 0x004:
+                    ShowSendResult();
                     break;
                 default:
                     break;
@@ -56,7 +69,6 @@ public class DetailsActivity extends Activity{
     private void SetImage(){
         BookResult bookResult = gson.fromJson(bookjson,BookResult.class);
         Book book=bookResult.list.get(0);
-        setContentView(R.layout.activity_details);
         nameOfBook=findViewById(R.id.book_Name);
         authorOfBook=findViewById(R.id.book_author);
         cover=findViewById(R.id.book_bind);
@@ -67,7 +79,7 @@ public class DetailsActivity extends Activity{
         cover.setImageBitmap(coverBit);
     }
 
-
+    //设置评论
     private void SetEva(){
         StrResult strResult=gson.fromJson(evajson,StrResult.class);
         mComment=strResult.list;
@@ -81,7 +93,8 @@ public class DetailsActivity extends Activity{
         findViewById(R.id.apply).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailsActivity.this, "成功发送申请！", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DetailsActivity.this, "成功发送申请！", Toast.LENGTH_SHORT).show();
+                GetPublisAccount();
             }
         });
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
@@ -90,6 +103,17 @@ public class DetailsActivity extends Activity{
                 ptlm.scrollToTop();
             }
         });
+    }
+
+    private void ShowSendResult(){
+        SimResult messageResult=gson.fromJson(sendjson,SimResult.class);
+        Toast.makeText(DetailsActivity.this, messageResult.result, Toast.LENGTH_SHORT).show();
+    }
+    //设置书籍的发布人
+    private void SetPublisAccount(){
+        StrResult_1 strResult=gson.fromJson(publishjson,StrResult_1.class);
+        publishAcc=strResult.list;
+        SendMes();
     }
     //获取封面
     private void GetImage(){
@@ -108,6 +132,41 @@ public class DetailsActivity extends Activity{
         }.start();
     }
 
+    //获取书籍的发布人
+    private void GetPublisAccount(){
+        new Thread() {
+            public void run() {
+                try {
+                    String loginURL;
+                    //构造连接字符串，并查询
+                    loginURL=GetData.url+"Publish/GetPublishAccount?bookNum="+bookNum;
+                    publishjson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x003);
+            }
+        }.start();
+    }
+
+    //发送申请
+    private void SendMes(){
+        new Thread() {
+            public void run() {
+                try {
+                    String loginURL;
+                    //构造连接字符串，并查询
+                    loginURL=GetData.url+"Message/Create?publishAcc="+user.UserAccount+"&receiveAcc="+publishAcc+"&message=申请借阅《"+bookName+"》&publishName="+user.UserName;
+                    sendjson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x004);
+            }
+        }.start();
+    }
+
+    //获取评论
     private void GetEva(){
         new Thread() {
             public void run() {
@@ -125,17 +184,14 @@ public class DetailsActivity extends Activity{
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        user=MainActivity.loginUser;
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();//获取传来的intent对象
+        setContentView(R.layout.activity_details);
         bookNum = intent.getStringExtra("bookNum");
         bookName = intent.getStringExtra("bookName");
         bookAuthor = intent.getStringExtra("bookAuthor");
         GetImage();
         GetEva();
-
-
-
-
-
     }
 }

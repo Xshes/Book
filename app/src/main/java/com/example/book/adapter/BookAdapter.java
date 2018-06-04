@@ -62,8 +62,10 @@ public class BookAdapter extends BaseAdapter {
         } else {
             holder = (BookAdapter.ViewHolder) convertView.getTag();
         }
-        holder.textView.setText(mContentList.get(position).BookName);
-        holder.uptextView.setText(mContentList.get(position).BookAuthor);
+        if(mContentList.get(0)!=null) {
+            holder.textView.setText(mContentList.get(position).BookName);
+            holder.uptextView.setText(mContentList.get(position).BookAuthor);
+        }
         return convertView;
     }
 

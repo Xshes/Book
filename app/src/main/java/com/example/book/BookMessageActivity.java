@@ -332,9 +332,8 @@ public class BookMessageActivity extends Activity implements AdapterView.OnItemC
                 @Override
                 public void onClick(View view) {
                     sll_main.setStatus(SwipeListLayout.Status.Close, true);
-                    contentList.remove(position);
-                    // TODO: 2018/6/4 position 有问题 
                     UserMessage str = contentList.get(position);
+                    contentList.remove(position);
                     ChangeMessageState(str);
                     notifyDataSetChanged();
                 }
