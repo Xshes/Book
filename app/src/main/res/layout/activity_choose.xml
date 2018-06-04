@@ -8,9 +8,10 @@
 
     <ImageView
         android:id="@+id/photo"
-        android:layout_width="600px"
+        android:layout_width="480px"
         android:layout_height="600px"
         android:layout_gravity="center"
+        android:scaleType="centerInside"
         android:layout_marginTop="10dp"
 
         android:background="@mipmap/ic_launcher_round" />

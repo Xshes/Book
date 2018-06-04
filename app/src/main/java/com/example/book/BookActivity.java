@@ -84,6 +84,17 @@ public class BookActivity extends Activity implements AdapterView.OnItemClickLis
         mListView = (ListView) findViewById(R.id.book_listview);
         mListView.setAdapter(new BookAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
+//        findViewById(R.id.bk_detail).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(BookActivity.this,DetailsActivity.class);
+//                Book book=contentList.get(position);
+//                intent.putExtra("bookNum",book.BookNumber);
+//                intent.putExtra("bookName",book.BookName);
+//                intent.putExtra("bookAuthor",book.BookAuthor);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     /**
