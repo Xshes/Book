@@ -3,39 +3,74 @@ package com.example.book;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.book.Entity.StrResult;
 import com.example.book.adapter.ReportDetailAdapter;
 import com.example.book.adapter.inter.InterClick;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReportDetailActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
-    private static final String[] CONTENTS = { "上传色情图书", "上传太色情的图书", "利用通知辱骂他人" };
     private List<String> contentList;
     private ListView mListView;
 
+    String account;
+    String listJson;
+    Gson gson = new Gson();
+    private Handler handler  = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what){
+                case 0x001:
+                    SetList();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    private void GetList(){
+        new Thread() {
+            public void run() {
+                try {
+                    String loginURL;
+                    //构造连接字符串，并查询
+                    loginURL=GetData.url+"Report/GetList?account="+account;
+                    listJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x001);
+            }
+        }.start();
+    }
+    private void SetList(){
+        StrResult result=gson.fromJson(listJson,StrResult.class);
+        contentList=result.list;
+        init();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();//获取传来的intent对象
+        account = intent.getStringExtra("account");
         setContentView(R.layout.activity_report_detail);
+        GetList();
 
-        init();
     }
 
     private void init() {
         mListView = (ListView) findViewById(R.id.report_listview);
-        contentList = new ArrayList<String>();
-        for (int i = 0; i < CONTENTS.length; i++) {
-            contentList.add(CONTENTS[i]);
-        }
         mListView.setAdapter(new ReportDetailAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
     }

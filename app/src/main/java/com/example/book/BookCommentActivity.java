@@ -357,7 +357,6 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(BookCommentActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
                 CrateEva(bookNumber,editText.getText().toString(),userAcc);
             }
         });
@@ -385,7 +384,6 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(BookCommentActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
                 CreateReport(editText.getText().toString(),bookNum,user.UserAccount);
             }
         });
@@ -403,6 +401,5 @@ public class BookCommentActivity extends Activity implements AdapterView.OnItemC
         Book book = contentList.get((Integer) v.getTag());
         PubBookNum=book.BookNumber;
         GetPublishResearch(PubBookNum,user.UserAccount);
-        //Toast.makeText(BookCommentActivity.this,  "发布成功！", Toast.LENGTH_LONG).show();
     }
 }

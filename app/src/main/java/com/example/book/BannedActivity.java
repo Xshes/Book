@@ -5,38 +5,76 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.book.Entity.BookResult;
+import com.example.book.Entity.StrResult;
+import com.example.book.Entity.User;
 import com.example.book.adapter.AdminBanAdapter;
 import com.example.book.adapter.inter.InterClick;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BannedActivity extends Activity implements AdapterView.OnItemClickListener,
         InterClick {
-    private static final String[] CONTENTS = { "一条鱼", "一只狗", "一个壮汉" };
     private List<String> contentList;
     private ListView mListView;
+
+    String listJson;
+    Gson gson = new Gson();
+    private Handler handler  = new Handler(){
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what){
+                case 0x001:
+                    SetList();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    public void GetBanedList()
+    {
+        new Thread() {
+            public void run() {
+                try {
+                    String loginURL;
+                    //构造连接字符串，并查询
+                    loginURL=GetData.url+"Report/GetList";
+                    listJson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x001);
+            }
+        }.start();
+    }
+    private void SetList(){
+        StrResult result=gson.fromJson(listJson,StrResult.class);
+        contentList=result.list;
+        init();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        GetBanedList();
 
-        init();
     }
 
     private void init() {
         mListView = (ListView) findViewById(R.id.admin_listview);
-        contentList = new ArrayList<String>();
-        for (int i = 0; i < CONTENTS.length; i++) {
-            contentList.add(CONTENTS[i]);
-        }
+
         mListView.setAdapter(new AdminBanAdapter(this, contentList, this));
         mListView.setOnItemClickListener(this);
     }
@@ -58,7 +96,7 @@ public class BannedActivity extends Activity implements AdapterView.OnItemClickL
     public void commentClick(View v) {
         Toast.makeText(
                 this,
-                "listview的内部的评论按钮被点击了！，位置是-->" + (Integer) v.getTag()
+                "listview的内部的详情按钮被点击了！，位置是-->" + (Integer) v.getTag()
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,ReportDetailActivity.class);
@@ -113,7 +151,7 @@ public class BannedActivity extends Activity implements AdapterView.OnItemClickL
     public void reportClick(View v) {
         Toast.makeText(
                 BannedActivity.this,
-                "listview的内部的举报按钮被点击了！，位置是-->" + (Integer) v.getTag()
+                "listview的内部的封禁按钮被点击了！，位置是-->" + (Integer) v.getTag()
                         + ",内容是-->" + contentList.get((Integer) v.getTag()),
                 Toast.LENGTH_SHORT).show();
         dialogEditReport();

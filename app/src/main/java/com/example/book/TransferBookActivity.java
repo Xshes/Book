@@ -167,27 +167,6 @@ public class TransferBookActivity extends Activity implements AdapterView.OnItem
         startActivity(intent);
     }
 
-    private void dialogEditComment() {
-        final EditText editText = new EditText(this);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this,3);
-        builder.setTitle("举报内容");
-        editText.setHeight(240);
-        builder.setView(editText);
-        builder.setPositiveButton("保存", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(TransferBookActivity.this, editText.getText().toString() + "  发送成功！", Toast.LENGTH_LONG).show();
-
-            }
-        });
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.create().show();
-    }
 
     private void dialogEditReport() {
         final EditText editText = new EditText(this);
