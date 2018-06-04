@@ -26,18 +26,18 @@
         >
 
         <!--<Button-->
-            <!--android:id="@+id/unban"-->
-            <!--android:layout_width="85dp"-->
-            <!--android:layout_height="33dp"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:layout_marginEnd="120dp"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:background="@drawable/touch_bg"-->
-            <!--android:gravity="center"-->
-            <!--android:text="举报"-->
-            <!--android:textColor="@color/txt_color"/>-->
+        <!--android:id="@+id/unban"-->
+        <!--android:layout_width="85dp"-->
+        <!--android:layout_height="33dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_marginEnd="120dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:background="@drawable/touch_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:text="举报"-->
+        <!--android:textColor="@color/txt_color"/>-->
 
         <Button
             android:id="@+id/unban"
@@ -49,7 +49,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/touch_bg"
+            android:background="@drawable/smalltouch_bg"
             android:gravity="center"
             android:text="解封"
             android:textColor="@color/txt_color"/>

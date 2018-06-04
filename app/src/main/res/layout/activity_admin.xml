@@ -33,5 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:text="跳转至解封页面"/>
+        android:text="跳转至解封页面"
+        android:textColor="#373447"
+        android:background="@drawable/shape2"/>
 </RelativeLayout>

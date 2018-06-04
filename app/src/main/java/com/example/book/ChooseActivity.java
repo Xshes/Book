@@ -40,10 +40,10 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
 
-        Button btnTakePhoto = (Button) findViewById(R.id.take_photo);
+//        Button btnTakePhoto = (Button) findViewById(R.id.take_photo);
         Button btnTakeGallery = (Button) findViewById(R.id.take_gallery);
         photo = (ImageView) findViewById(R.id.photo);
-        btnTakePhoto.setOnClickListener(this);
+//        btnTakePhoto.setOnClickListener(this);
         btnTakeGallery.setOnClickListener(this);
         findViewById(R.id.upload).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,28 +57,28 @@ public class ChooseActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.take_photo:
-                requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
-                    @Override
-                    public void granted() {
-                        if (hasSdcard()) {
-                            imageUri = Uri.fromFile(fileUri);
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                                //通过FileProvider创建一个content类型的Uri
-                                imageUri = FileProvider.getUriForFile(ChooseActivity.this, "com.example.book.fileprovider", fileUri);
-                            PhotoUtils.takePicture(ChooseActivity.this, imageUri, CODE_CAMERA_REQUEST);
-                        } else {
-                            Toast.makeText(ChooseActivity.this, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
-                            Log.e("asd", "设备没有SD卡");
-                        }
-                    }
+//            case R.id.take_photo:
+//                requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
+//                    @Override
+//                    public void granted() {
+//                        if (hasSdcard()) {
+//                            imageUri = Uri.fromFile(fileUri);
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+//                                //通过FileProvider创建一个content类型的Uri
+//                                imageUri = FileProvider.getUriForFile(ChooseActivity.this, "com.example.book.fileprovider", fileUri);
+//                            PhotoUtils.takePicture(ChooseActivity.this, imageUri, CODE_CAMERA_REQUEST);
+//                        } else {
+//                            Toast.makeText(ChooseActivity.this, "设备没有SD卡！", Toast.LENGTH_SHORT).show();
+//                            Log.e("asd", "设备没有SD卡");
+//                        }
+//                    }
 
-                    @Override
-                    public void denied() {
-                        Toast.makeText(ChooseActivity.this, "部分权限获取失败，正常功能受到影响", Toast.LENGTH_LONG).show();
-                    }
-                });
-                break;
+//                    @Override
+//                    public void denied() {
+//                        Toast.makeText(ChooseActivity.this, "部分权限获取失败，正常功能受到影响", Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//                break;
             case R.id.take_gallery:
                 requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, new RequestPermissionCallBack() {
                     @Override

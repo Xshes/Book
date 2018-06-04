@@ -2,7 +2,7 @@
 <com.example.book.SwipeListLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sll_comment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,8 +13,6 @@
     </LinearLayout>
 
     <RelativeLayout
-
-
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -34,7 +32,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="220dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/touch_bg"
+            android:background="@drawable/smalltouch_bg"
             android:gravity="center"
             android:text="删除"
             android:textColor="@color/txt_color"/>
@@ -48,7 +46,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="120dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/touch_bg"
+            android:background="@drawable/smalltouch_bg"
             android:gravity="center"
             android:text="举报详情"
             android:textColor="@color/txt_color"/>
@@ -63,7 +61,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/touch_bg"
+            android:background="@drawable/smalltouch_bg"
             android:gravity="center"
             android:text="封禁"
             android:textColor="@color/txt_color"/>

@@ -3,73 +3,108 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:layout_marginLeft="20dp">
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="320dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
+                android:paddingLeft="20dp"
 
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="320dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="0dp"
 
-        android:paddingLeft="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7">
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:text="寻找"
+                android:textSize="18sp"
+                android:textColor="#373447"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/shape2"/>
 
-        />
+        </LinearLayout>
+    </LinearLayout>
 
-    <RadioGroup
-        android:id="@+id/srg1"
-        android:layout_width="320dp"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/srb1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="教材"
-            android:layout_gravity="bottom" />
+        <RadioGroup
+            android:id="@+id/srg1"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
-        <RadioButton
-            android:id="@+id/srb2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="名著"
-            android:layout_gravity="bottom"/>
+            <RadioButton
+                android:id="@+id/srb1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="教材"
+                android:textSize="20sp"
+                android:textColor="#373447"
+                android:layout_gravity="bottom" />
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/srb2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="名著"
+                android:textSize="20sp"
+                android:textColor="#373447"
+                android:layout_gravity="bottom"/>
 
-    <RadioGroup
-        android:id="@+id/srg2"
-        android:layout_width="320dp"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        </RadioGroup>
 
-        <RadioButton
-            android:id="@+id/srb3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="笔记"
-            android:layout_gravity="top"/>
+        <RadioGroup
+            android:id="@+id/srg2"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
-        <RadioButton
-            android:id="@+id/srb4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="其他"
-            android:layout_gravity="top"/>
+            <RadioButton
+                android:id="@+id/srb3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="笔记"
+                android:textSize="20sp"
+                android:textColor="#373447"
+                android:layout_gravity="top"/>
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/srb4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="其他"
+                android:textSize="20sp"
+                android:textColor="#373447"
+                android:layout_gravity="top"/>
 
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:text="寻找" />
+        </RadioGroup>
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
 
     <com.example.book.PullUpToLoadMore
@@ -25,9 +26,10 @@ android:layout_height="match_parent">
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/ttt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -48,25 +50,29 @@ android:layout_height="match_parent">
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="时间简史" />
+                            android:text="时间简史"
+                            android:textSize="24sp"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="作者：" />
+                            android:text="作者："
+                            android:textSize="18sp"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="上传者：" />
+                            android:text="上传者："
+                            android:textSize="18sp"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="转让者：" />
+                            android:text="转让者："
+                            android:textSize="18sp"/>
 
 
                     </LinearLayout>
@@ -83,7 +89,7 @@ android:layout_height="match_parent">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:height="50dp"
-                        android:background="#b11"
+                        android:background="#8ebfd9"
                         android:gravity="center"
                         android:text="继续拖动查看图书评论"
                         android:textColor="#000" />
@@ -108,7 +114,7 @@ android:layout_height="match_parent">
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:height="50dp"
-                    android:background="#b11"
+                    android:background="#aaffcccc"
                     android:gravity="center"
                     android:text="评论详情"
                     android:textSize="16dp"
@@ -127,19 +133,24 @@ android:layout_height="match_parent">
     </com.example.book.PullUpToLoadMore>
 
 
-        <Button
-            android:text="回到顶部"
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"/>
-        <Button
-            android:id="@+id/apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="申请借阅"
-            android:layout_alignParentRight="true"
-            android:layout_above="@+id/btn"/>
+    <Button
+        android:text="回到顶部"
+        android:textColor="#373447"
+        android:id="@+id/btn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape2"/>
+    <Button
+        android:id="@+id/apply"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@drawable/shape2"
+        android:layout_marginBottom="5dp"
+        android:text="申请借阅"
+        android:textColor="#373447"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/btn"/>
 </RelativeLayout>

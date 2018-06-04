@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="55dp"
     android:gravity="center"
-    android:background="@color/material_blue_grey_800"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -12,7 +11,8 @@
         android:layout_weight="1"
         android:id="@+id/id_tab_transfer"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#9bc5e8">
 
         <ImageButton
             android:id="@+id/id_tab_transfer_img"
@@ -24,7 +24,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
+            android:textColor="#fff"
+            android:textSize="18sp"
             android:text="转让"/>
     </LinearLayout>
     <LinearLayout
@@ -33,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#9bc5e8">
 
         <ImageButton
             android:id="@+id/id_tab_search_img"
@@ -45,8 +47,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:text="寻找"/>
+            android:textColor="#fff"
+            android:text="寻找"
+            android:textSize="18sp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/id_tab_info"
@@ -54,7 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#9bc5e8">
 
         <ImageButton
             android:id="@+id/id_tab_info_img"
@@ -66,8 +70,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:text="我的"/>
+            android:textColor="#fff"
+            android:text="我的"
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </LinearLayout>

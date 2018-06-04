@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F0F3F6"
     >
 
 
     <LinearLayout style="@style/wrap_layout" >
         <!-- 上圆角-->
-        <LinearLayout style="@style/top_layout">
+        <LinearLayout style="@style/top_layout"
+            android:background="#e6f2f7">
             <TextView
                 android:id="@+id/nickname"
                 style="@style/usertext" android:text="昵称" />
@@ -26,19 +26,22 @@
         <!-- 分割线 -->
         <View style="@style/bg_line"/>
         <!-- 无圆角-->
-        <LinearLayout style="@style/mid_layout">
+        <LinearLayout style="@style/mid_layout"
+            android:background="#c0deed">
             <TextView style="@style/usertext" android:text="我的签名" />
             <TextView
                 android:id="@+id/signaturetext"
                 style="@style/usertext"
-                android:text=""/>
+                android:text="请设置你的个性签名"
+                android:textColor="@android:color/darker_gray"/>
             <ImageButton
                 android:id="@+id/mysignature"
                 style="@style/img_arrow"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
         <View style="@style/bg_line"/>
-        <LinearLayout style="@style/mid_layout">
+        <LinearLayout style="@style/mid_layout"
+            android:background="#e6f2f7">
             <TextView style="@style/usertext" android:text="我的转让" />
             <ImageButton
                 android:id="@+id/mytransfer"
@@ -46,7 +49,8 @@
                 android:background="@android:color/transparent"/>
         </LinearLayout>
         <View style="@style/bg_line"/>
-        <LinearLayout style="@style/mid_layout">
+        <LinearLayout style="@style/mid_layout"
+            android:background="#c0deed">
             <TextView style="@style/usertext" android:text="我的阅览" />
             <ImageButton
                 android:id="@+id/myreading"
@@ -55,7 +59,8 @@
         </LinearLayout>
 
         <View style="@style/bg_line"/>
-        <LinearLayout style="@style/mid_layout">
+        <LinearLayout style="@style/mid_layout"
+            android:background="#e6f2f7">
             <TextView style="@style/usertext" android:text="借阅通知" />
             <ImageButton
                 android:id="@+id/mybookmessage"
@@ -64,7 +69,8 @@
         </LinearLayout>
         <View style="@style/bg_line"/>
         <!-- 下圆角-->
-        <LinearLayout style="@style/bottom_layout">
+        <LinearLayout style="@style/bottom_layout"
+            android:background="#c0deed">
             <TextView style="@style/usertext" android:text="消息通知" />
             <ImageButton
                 android:id="@+id/sys_message"
@@ -77,7 +83,8 @@
 
     <!-- 全圆角-->
     <LinearLayout style="@style/wrap_layout">
-        <LinearLayout style="@style/single_layout">
+        <LinearLayout style="@style/single_layout"
+            android:background="#8ebfd9">
             <TextView style="@style/usertext" android:text="注销"/>
             <ImageButton
                 android:id="@+id/myexit"
