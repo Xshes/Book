@@ -73,7 +73,6 @@ public class InfoFragment extends Fragment{
         name=(ImageButton) getActivity().findViewById(R.id.myname);
         transfer=(ImageButton) getActivity().findViewById(R.id.mytransfer);
         read=(ImageButton) getActivity().findViewById(R.id.myreading);
-        sysmessage=(ImageButton)getActivity().findViewById(R.id.sys_message);
         bookmessage=(ImageButton)getActivity().findViewById(R.id.mybookmessage);
         exit=(ImageButton) getActivity().findViewById(R.id.myexit);
         user=MainActivity.loginUser;
@@ -98,13 +97,7 @@ public class InfoFragment extends Fragment{
                 startActivity(intent);
             }
         });
-        sysmessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getActivity(),SystemMessageActivity.class);
-                startActivity(intent);
-            }
-        });
+
         transfer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

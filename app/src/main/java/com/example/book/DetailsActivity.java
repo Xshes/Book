@@ -39,6 +39,7 @@ public class DetailsActivity extends Activity{
     String evajson;
     String sendjson;
     String publishjson;
+    String transjson;
     String bookNum;
     String bookName;
     String bookAuthor;
@@ -107,6 +108,7 @@ public class DetailsActivity extends Activity{
 
     private void ShowSendResult(){
         SimResult messageResult=gson.fromJson(sendjson,SimResult.class);
+        SetTransfer();
         Toast.makeText(DetailsActivity.this, messageResult.result, Toast.LENGTH_SHORT).show();
     }
     //设置书籍的发布人
@@ -165,6 +167,24 @@ public class DetailsActivity extends Activity{
             }
         }.start();
     }
+
+    private void SetTransfer()
+    {
+        new Thread() {
+            public void run() {
+                try {
+                    String loginURL;
+                    //构造连接字符串，并查询
+                    loginURL=GetData.url+"Transfer/Create?bookNum="+bookNum+"&recipientAcc="+user.UserAccount;
+                    transjson =GetData.getJson(loginURL);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x005);
+            }
+        }.start();
+    }
+
 
     //获取评论
     private void GetEva(){

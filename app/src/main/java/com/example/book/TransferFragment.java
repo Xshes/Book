@@ -182,11 +182,11 @@ public class TransferFragment extends Fragment implements CompoundButton.OnCheck
                 else if(mRg1.getCheckedRadioButtonId()!=-1){
                     RadioButton radioButton = (RadioButton) getActivity().findViewById(mRg1.getCheckedRadioButtonId());
                     String selectText = radioButton.getText().toString();
-                    CreateBook(user.UserAccount,temp2,temp2,selectText,cover);
+                    CreateBook(user.UserAccount,temp2,temp1,selectText,cover);
                 }else if(mRg2.getCheckedRadioButtonId()!=-1) {
                     RadioButton radioButton = (RadioButton) getActivity().findViewById(mRg2.getCheckedRadioButtonId());
                     String selectText = radioButton.getText().toString();
-                    CreateBook(user.UserAccount,temp2,temp2,selectText,cover);
+                    CreateBook(user.UserAccount,temp2,temp1,selectText,cover);
                 }
             }
         });

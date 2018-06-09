@@ -89,7 +89,6 @@ public class UnbanActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dialogunban(mListView.getItemAtPosition(position).toString());
-                Toast.makeText(UnbanActivity.this,mListView.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -145,7 +144,6 @@ public class UnbanActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 UnBan(banObj);
-                Toast.makeText(UnbanActivity.this,"解除封禁成功！", Toast.LENGTH_LONG).show();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {

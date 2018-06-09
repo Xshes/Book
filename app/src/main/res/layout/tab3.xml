@@ -69,14 +69,7 @@
         </LinearLayout>
         <View style="@style/bg_line"/>
         <!-- 下圆角-->
-        <LinearLayout style="@style/bottom_layout"
-            android:background="#c0deed">
-            <TextView style="@style/usertext" android:text="消息通知" />
-            <ImageButton
-                android:id="@+id/sys_message"
-                style="@style/img_arrow"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
+
 
     </LinearLayout>
 
